@@ -1,1 +1,123 @@
+@font-face {
+  font-family: "CustomFont";
+  src: url("assets/fonts/space-grotesk-v22-latin-regular.woff2") format("woff2");
+  font-style: normal;
+  font-display: swap;
+}
 
+:root {
+  --background: #060b18;
+  --foreground: #f8fafc;
+  --card: #0f172a;
+  --header-bg: rgba(15, 23, 42, 0.75);
+  --primary: #2563eb;
+  --primary-foreground: #ffffff;
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+  --border: #334155;
+  --border-line: 1px solid #334155;
+  --ring: #3b82f6;
+  --plain: #ffffff;
+  --header-span-color: #94a3b8;
+  --header-hover-color: #ffffff;
+  --header-hover-bg: rgba(37, 99, 235, 0.25);
+  --logo-colour: #ffffff;
+}
+
+[data-theme="light"] {
+  --background: #f8fafc;
+  --foreground: #020617;
+  --card: #ffffff;
+  --header-bg: rgba(255, 255, 255, 0.85);
+  --card-foreground: #020617;
+  --primary: #1d4ed8;
+  --primary-foreground: #ffffff;
+  --muted: #e2e8f0;
+  --muted-foreground: #475569;
+  --border: #cbd5e1;
+  --border-line: 1px solid #cbd5e1;
+  --ring: #1d4ed8;
+  --plain: #020617;
+  --header-span-color: #0f172a;
+  --header-hover-color: #1d4ed8;
+  --header-hover-bg: rgba(29, 78, 216, 0.12);
+  --logo-colour: #000000;
+}
+
+* {
+  font-family: CustomFont, sans-serif;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  background: var(--header-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: var(--border-line);
+  width: 100%;
+  max-height: 10rem;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+#logo-header{
+  width: 15rem;
+  padding: 1.5rem;
+  transition: transform 0.2s ease;
+  display: block;
+}
+
+
+header img:active {
+  transform: scale(0.9);
+}
+
+header nav {
+  display: flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  margin: 0 1rem;
+  gap: 1.5rem;
+}
+
+/* Nav Pill Links */
+header nav span,
+header nav a {
+  display: inline-flex;
+  align-items: center;
+  color: var(--header-span-color);
+  background-color: transparent;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+header nav span:hover,
+header nav a:hover {
+  background-color: var(--header-hover-bg);
+  color: var(--header-hover-color);
+  transform: scale(1.05);
+}
