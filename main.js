@@ -5,10 +5,11 @@ document.addEventListener("DOMContentLoaded", () => {
     clickCount++;
     if (clickCount % 2 === 1) {
       document.documentElement.setAttribute("data-theme", "light");
-      darkbutton.src = 
+      darkbutton.src = "assets/images/logo/vector/default-monochrome-black.svg";
       console.log("Light Mode");
     } else {
       document.documentElement.removeAttribute("data-theme");
+      darkbutton.src = "assets/images/logo/vector/default-monochrome-white.svg";
       console.log("Dark Mode");
     }
   });
