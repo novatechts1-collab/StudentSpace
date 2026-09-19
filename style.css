@@ -121,3 +121,26 @@ header nav a:hover {
   color: var(--header-hover-color);
   transform: scale(1.05);
 }
+.hero{
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero p, .what li{
+  padding-top: 1rem;
+}
+.welcome{
+  width: 60%;
+}
+.what{
+  padding: 0.5rem;
+  width: 40%;
+  border: 1px solid red;
+}
+
+.card-header{
+  text-align: center;
+  padding: 0.5rem;
+  border-bottom: var(--border-line);
+}
