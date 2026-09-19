@@ -79,13 +79,12 @@ header {
     border-color 0.3s ease;
 }
 
-#logo-header{
+#logo-header {
   width: 15rem;
   padding: 1.5rem;
   transition: transform 0.2s ease;
   display: block;
 }
-
 
 header img:active {
   transform: scale(0.9);
@@ -121,26 +120,31 @@ header nav a:hover {
   color: var(--header-hover-color);
   transform: scale(1.05);
 }
-.hero{
+.hero {
   padding: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.hero p, .what li{
+.hero p,
+.what li {
   padding-top: 1rem;
 }
-.welcome{
+.welcome {
   width: 60%;
 }
-.what{
-  padding: 0.5rem;
+.what {
+  padding: 0rem 2rem 2rem 2rem;
   width: 40%;
-  border: 1px solid red;
+  background-color: var(--header-bg);
+  border-radius: 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-.card-header{
-  text-align: center;
-  padding: 0.5rem;
+.card-header {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
   border-bottom: var(--border-line);
+  font-size: 2rem;
 }
