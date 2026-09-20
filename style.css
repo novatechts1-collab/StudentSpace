@@ -126,8 +126,7 @@ header nav a:hover {
   align-items: center;
   justify-content: center;
 }
-.hero p,
-.what li {
+.hero p {
   padding-top: 1rem;
 }
 .welcome {
@@ -140,11 +139,26 @@ header nav a:hover {
   border-radius: 40px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   display: flex;
+  flex-direction: column;
 }
+.what-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-areas:
+    "top1 top2"
+    "middle1 middle2"
+    "bottom bottom";
+}
+
 i {
   width: 2rem;
   color: var(--foreground);
+  border: 1px solid red;
+  padding: 10px;
+  border-radius: 100px;
 }
+
 .card-header {
   display: flex;
   justify-content: center;
@@ -152,7 +166,27 @@ i {
   border-bottom: var(--border-line);
   font-size: 2rem;
 }
-.minis{
-  display: flex;
-  flex-direction: column;
+
+.what-top1 {
+  grid-area: top1;
+}
+.what-top2 {
+  grid-area: top2;
+}
+.what-middle1 {
+  grid-area: middle1;
+}
+.what-middle2 {
+  grid-area: middle2;
+}
+.what-bottom {
+  grid-area: bottom;
+}
+.what-grid span{
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+padding: 0.5rem;
+gap: 10px;
 }
