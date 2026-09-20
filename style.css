@@ -139,8 +139,9 @@ header nav a:hover {
   background-color: var(--header-bg);
   border-radius: 40px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  display: flex;
 }
-.what img{
+i {
   width: 2rem;
   color: var(--foreground);
 }
@@ -150,4 +151,8 @@ header nav a:hover {
   padding: 1rem;
   border-bottom: var(--border-line);
   font-size: 2rem;
+}
+.minis{
+  display: flex;
+  flex-direction: column;
 }
