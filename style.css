@@ -140,7 +140,10 @@ header nav a:hover {
   border-radius: 40px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
-
+.what img{
+  width: 2rem;
+  color: var(--foreground);
+}
 .card-header {
   display: flex;
   justify-content: center;
