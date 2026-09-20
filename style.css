@@ -151,7 +151,7 @@ header nav a:hover {
     "bottom bottom";
 }
 
-i {
+.what-grid img {
   width: 2rem;
   color: var(--foreground);
   border: 1px solid red;
