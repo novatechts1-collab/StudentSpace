@@ -22,6 +22,7 @@
   --header-hover-color: #ffffff;
   --header-hover-bg: rgba(37, 99, 235, 0.25);
   --logo-colour: #ffffff;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 [data-theme="light"] {
@@ -42,6 +43,7 @@
   --header-hover-color: #1d4ed8;
   --header-hover-bg: rgba(29, 78, 216, 0.12);
   --logo-colour: #000000;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 * {
@@ -114,11 +116,13 @@ header nav a {
     transform 0.2s ease;
 }
 
-header nav span:hover,
+
 header nav a:hover {
   background-color: var(--header-hover-bg);
-  color: var(--header-hover-color);
   transform: scale(1.05);
+}
+#home{
+  background-color: var(--header-hover-bg);
 }
 .hero {
   padding: 2rem;
@@ -133,15 +137,22 @@ header nav a:hover {
   width: 60%;
 }
 .what {
+  color: var(--foreground);
   padding: 0rem 2rem 2rem 2rem;
   width: 40%;
-  background-color: var(--header-bg);
+  background: linear-gradient(
+    135deg,
+    var(--background) 20%,
+    var(--header-bg) 80%
+  );
   border-radius: 40px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
 }
+
 .what-grid {
+  padding: 10px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: repeat(3, 1fr);
@@ -151,11 +162,11 @@ header nav a:hover {
     "bottom bottom";
 }
 
-.what-grid img {
-  width: 2rem;
-  color: var(--foreground);
-  border: 1px solid red;
+.what-grid svg {
+  max-width: 4rem;
+  box-sizing: content-box;
   padding: 10px;
+  background-color: var(--muted);
   border-radius: 100px;
 }
 
@@ -165,28 +176,41 @@ header nav a:hover {
   padding: 1rem;
   border-bottom: var(--border-line);
   font-size: 2rem;
+  cursor: pointer;
+  transition: transform 10s ease;
 }
-
-.what-top1 {
+.card-header:hover{
+  transform: scale(1.1);
+}
+.what-minis {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  gap: 5px;
+  border-radius: 30px;
+  box-shadow: var(--shadow);
+  transition: transform 0.5s ease;
+}
+.what-minis:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+#what-top1 {
   grid-area: top1;
 }
-.what-top2 {
+#what-top2 {
   grid-area: top2;
 }
-.what-middle1 {
+#what-middle1 {
   grid-area: middle1;
 }
-.what-middle2 {
+#what-middle2 {
   grid-area: middle2;
 }
-.what-bottom {
+#what-bottom {
   grid-area: bottom;
-}
-.what-grid span{
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-padding: 0.5rem;
-gap: 10px;
 }
