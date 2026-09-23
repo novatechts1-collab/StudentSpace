@@ -116,12 +116,11 @@ header nav a {
     transform 0.2s ease;
 }
 
-
 header nav a:hover {
   background-color: var(--header-hover-bg);
   transform: scale(1.05);
 }
-#home{
+#home {
   background-color: var(--header-hover-bg);
 }
 .hero {
@@ -179,7 +178,7 @@ header nav a:hover {
   cursor: pointer;
   transition: transform 10s ease;
 }
-.card-header:hover{
+.card-header:hover {
   transform: scale(1.1);
 }
 .what-minis {
