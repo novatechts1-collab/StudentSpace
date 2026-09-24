@@ -289,3 +289,7 @@ header nav a:hover {
   flex-direction: row;
   gap: 1rem;
 }
+.suites li{
+  list-style: none;
+  padding: 0.5rem;
+}
