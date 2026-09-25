@@ -9,44 +9,50 @@
   --background: #060b18;
   --foreground: #f8fafc;
   --card: #0f172a;
-  --header-bg: rgba(15, 23, 42, 0.75);
-  --primary: #2563eb;
+  --header-bg: rgba(15, 23, 42, 0.8);
+  --primary: #3b82f6;
   --primary-foreground: #ffffff;
   --muted: #1e293b;
   --muted-foreground: #94a3b8;
   --border: #334155;
-  --border-line: 1px solid #334155;
-  --diagnostic: 1px solid red;
+  --border-line: 1px solid var(--border);
   --ring: #3b82f6;
   --plain: #ffffff;
   --header-span-color: #94a3b8;
   --header-hover-color: #ffffff;
-  --header-hover-bg: rgba(37, 99, 235, 0.25);
+  --header-hover-bg: rgba(59, 130, 246, 0.2);
   --logo-colour: #ffffff;
-  --shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  --getstart-bg: #0f172a;
+  --shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+  --getstart-bg: #0d1527;
+  --svg-bg: rgba(255, 255, 255, 0.08);
+  --svg-border: rgba(255, 255, 255, 0.15);
+  --svg-icon-color: #60a5fa;
+  --diagnostic: 1px solid red;
 }
 
 [data-theme="light"] {
-  --background: #f8fafc;
-  --foreground: #020617;
+  --background: #f1f5f9;
+  --foreground: #0f172a;
   --card: #ffffff;
   --header-bg: rgba(255, 255, 255, 0.85);
-  --card-foreground: #020617;
-  --primary: #1d4ed8;
+  --primary: #2563eb;
   --primary-foreground: #ffffff;
-  --muted: #215bd8b6;
-  --muted-foreground: #475569;
-  --border: #cbd5e1;
-  --border-line: 1px solid #cbd5e1;
-  --ring: #1d4ed8;
-  --plain: #020617;
-  --header-span-color: #0f172a;
-  --header-hover-color: #1d4ed8;
-  --header-hover-bg: rgba(29, 78, 216, 0.12);
-  --logo-colour: #000000;
-  --shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  --getstart-bg: #d4d4d8;
+  --muted: #e2e8f0;
+  --muted-foreground: #64748b;
+  --border: #e2e8f0;
+  --border-line: 1px solid #d3d6db;
+  --ring: #2563eb;
+  --plain: #0f172a;
+  --header-span-color: #475569;
+  --header-hover-color: #2563eb;
+  --header-hover-bg: rgba(37, 99, 235, 0.1);
+  --logo-colour: #0f172a;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --getstart-bg: #e2e8f0;
+  --svg-bg: #94a3b842;
+  --svg-border: #cbd5e1;
+  --svg-icon-color: #1d4ed8;
+  --diagnostic: 1px solid red;
 }
 
 * {
@@ -66,7 +72,7 @@ a {
   text-decoration: none;
   color: inherit;
 }
-p{
+p {
   padding-top: 0.5rem;
 }
 header {
@@ -170,8 +176,10 @@ header nav a:hover {
   max-width: 4rem;
   box-sizing: content-box;
   padding: 10px;
-  background-color: var(--muted);
-  border-radius: 100px;
+  background-color: var(--svg-bg);
+  border: 1px solid var(--svg-border); 
+  border-radius: 100px; 
+  transition: all 0.2s ease-in-out;
 }
 .card {
   padding: 0rem 2rem 2rem 2rem;
@@ -190,9 +198,12 @@ header nav a:hover {
   cursor: pointer;
   transition: transform 0.7s ease;
 }
+.what-minis:hover,
 .card-header:hover {
-  transform: scale(1.01);
+  transform: translateY(-4px) scale(1.02);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .what-minis {
   display: flex;
   flex-direction: column;
@@ -207,7 +218,6 @@ header nav a:hover {
   transition: transform 0.5s ease;
 }
 .what-minis:hover {
-  transform: scale(1.1);
   cursor: pointer;
 }
 #what-top1 {
@@ -226,8 +236,9 @@ header nav a:hover {
   grid-area: bottom;
 }
 .transition {
-  height: 50px;
+  height: 60px;
   background: linear-gradient(to bottom, var(--background), var(--getstart-bg));
+  width: 100%;
 }
 .about {
   padding: 2rem;
@@ -288,26 +299,31 @@ header nav a:hover {
   transition: transform 0.3s ease;
   font-style: italic;
 }
-.carousel{
+.carousel {
   padding: 1rem;
   display: flex;
-  gap: 1rem;
+  justify-content: space-between;
 }
-.carousel-mini{
+.carousel-mini {
   padding: 1rem;
   border-radius: 20px;
-  background: linear-gradient(135deg, var(--header-bg), var(--muted));
-  box-shadow: var(--shadow);
+  box-shadow: 0 0 12px rgba(114, 134, 167, 0.25);;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 5px;
 }
-.carousel svg{
+.carousel-mini:hover{
+  transform: translateY(-4px) scale(1.02);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+.carousel svg {
   width: 2rem;
   box-sizing: content-box;
   padding: 10px;
-  background-color: var(--muted);
-  border-radius: 200px;
+  background-color: var(--svg-bg);
+  border: 1px solid var(--svg-border);
+  border-radius: 100px;
+  transition: all 0.2s ease-in-out;
 }
-
