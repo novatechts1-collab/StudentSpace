@@ -327,3 +327,19 @@ header nav a:hover {
   border-radius: 100px;
   transition: all 0.2s ease-in-out;
 }
+.tools-info{
+  display: flex;
+  flex-direction: column;
+}
+.info-tier{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  padding: 1rem;
+  gap: 2rem;
+}
+.tool-name, .tool-desc, .tool-tagline{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
