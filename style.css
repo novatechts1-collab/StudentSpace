@@ -8,7 +8,7 @@
 :root {
   --background: #060b18;
   --foreground: #f8fafc;
-  --card: #0f172a;
+  --card: #272d3d;
   --header-bg: rgba(15, 23, 42, 0.8);
   --primary: #3b82f6;
   --primary-foreground: #ffffff;
@@ -24,35 +24,46 @@
   --logo-colour: #ffffff;
   --shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
   --getstart-bg: #0d1527;
-  --svg-bg: rgba(255, 255, 255, 0.08);
-  --svg-border: rgba(255, 255, 255, 0.15);
-  --svg-icon-color: #60a5fa;
+  --svg-bg: #0b1329;
+  --svg-border: #1e293b;
   --diagnostic: 1px solid red;
+  --selected-shadow:
+    0 0 0 1px #3b82f6, 0 0 16px -2px rgba(59, 130, 246, 0.5),
+    0 8px 20px -4px rgba(0, 0, 0, 0.6);
+  --selected-bg: rgba(59, 130, 246, 0.12);
+  --selected-border: #3b82f6;
+  --carousel-bg: #15203b;
 }
 
 [data-theme="light"] {
-  --background: #f1f5f9;
+  --background: #f8fafc;
   --foreground: #0f172a;
   --card: #ffffff;
-  --header-bg: rgba(255, 255, 255, 0.85);
+  --header-bg: rgba(255, 255, 255, 0.9);
   --primary: #2563eb;
   --primary-foreground: #ffffff;
-  --muted: #e2e8f0;
-  --muted-foreground: #64748b;
-  --border: #e2e8f0;
-  --border-line: 1px solid #d3d6db;
+  --muted: #f1f5f9;
+  --muted-foreground: #475569;
+  --border: #b0bec5;
+  --border-line: 1px solid var(--border);
   --ring: #2563eb;
   --plain: #0f172a;
   --header-span-color: #475569;
   --header-hover-color: #2563eb;
-  --header-hover-bg: rgba(37, 99, 235, 0.1);
+  --header-hover-bg: rgba(37, 99, 235, 0.08);
   --logo-colour: #0f172a;
-  --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  --getstart-bg: #e2e8f0;
-  --svg-bg: #94a3b842;
+  --shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+  --getstart-bg: #dbe2ec;
+  --svg-bg: #e2e8f0;
   --svg-border: #cbd5e1;
-  --svg-icon-color: #1d4ed8;
+  --svg-icon-color: #2563eb;
   --diagnostic: 1px solid red;
+  --selected-shadow:
+    0 0 0 1.5px #2563eb, 0 0 14px -1px rgba(37, 99, 235, 0.35),
+    0 6px 16px -4px rgba(15, 23, 42, 0.12);
+  --selected-bg: #dbeafe;
+  --selected-border: #2563eb;
+  --carousel-bg: #f1f5f9;
 }
 
 * {
@@ -177,7 +188,8 @@ header nav a:hover {
   box-sizing: content-box;
   padding: 10px;
   background-color: var(--svg-bg);
-  border: 1px solid var(--svg-border);
+  color: var(--svg-icon-color);
+  border: 0.5px solid var(--svg-border);
   border-radius: 100px;
   transition: all 0.2s ease-in-out;
 }
@@ -198,7 +210,7 @@ header nav a:hover {
   cursor: pointer;
   transition: transform 0.7s ease;
 }
-.what-minis:hover{
+.what-minis:hover {
   transform: translateY(-4px) scale(1.02);
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -292,7 +304,9 @@ header nav a:hover {
   justify-content: center;
   width: 20%;
   padding: 1rem;
-  background: linear-gradient(135deg, var(--header-bg), var(--muted));
+  background-color: var(--svg-bg) !important;
+  border: 1px solid var(--svg-border);
+  color: var(--foreground);
   border-radius: 20px;
   transition: transform 0.3s ease;
   font-style: italic;
@@ -311,6 +325,7 @@ header nav a:hover {
   align-items: center;
   gap: 5px;
   transition: box-shadow 1s ease;
+  background-color: var(--carousel-bg);
 }
 .carousel-mini:hover {
   transform: translateY(-4px) scale(1.02);
@@ -318,14 +333,19 @@ header nav a:hover {
   cursor: pointer;
 }
 .carousel-mini.selected {
-  box-shadow: 0 0 12px var(--primary);
+  background-color: var(--selected-bg) !important;
+  border-color: var(--selected-border) !important;
+  box-shadow: var(--selected-shadow) !important;
+  transform: translateY(-2px);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .carousel svg {
   width: 2rem;
   box-sizing: content-box;
   padding: 10px;
-  background-color: var(--svg-bg);
+  background-color: var(--svg-bg) !important;
   border: 1px solid var(--svg-border);
+  color: var(--svg-icon-color);
   border-radius: 100px;
   transition: all 0.2s ease-in-out;
 }
@@ -343,8 +363,12 @@ header nav a:hover {
 .active-info {
   margin: 0.625rem 0rem 0rem 1rem;
   border-radius: 20px;
-  box-shadow: 0 0 12px rgba(114, 134, 167, 0.25);
-  background-color: var(--svg-bg);
+  box-shadow: var(--shadow);
+  background: linear-gradient(
+    to bottom,
+    var(--header-hover-bg) 10%,
+    var(--svg-bg) 90%
+  );
   width: 53%;
   display: flex;
   flex-direction: column;
@@ -354,7 +378,7 @@ header nav a:hover {
     opacity 350ms ease,
     transform 350ms ease;
 }
-.active-info.fade-out{
+.active-info.fade-out {
   opacity: 0;
   transform: translateY(-4px);
 }
@@ -376,7 +400,7 @@ header nav a:hover {
 }
 .active-info li {
   display: flex;
-  align-items: center; 
+  align-items: center;
   padding: 0.5rem 0.7rem;
   list-style: none;
   list-style-position: inside;
@@ -397,12 +421,12 @@ header nav a:hover {
 .s-button {
   margin: 0px 20px 20px 20px;
   padding: 10px;
-  background-color: var(--svg-bg);
-  border: 1px solid var(--svg-border);
+  background-color: var(--card);
+  color: var(--foreground);
+  border: 1px solid var(--border);
   border-radius: 100px;
   transition: all 0.2s ease-in-out;
   font-size: medium;
-
 }
 .s-button:hover {
   cursor: pointer;
