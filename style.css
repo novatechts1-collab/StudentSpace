@@ -376,9 +376,9 @@ header nav a:hover {
 }
 .active-info li {
   display: flex;
-  align-items: first baseline;
-  justify-content: left;
-  padding: 0.7rem;
+  align-items: center; 
+  padding: 0.5rem 0.7rem;
+  list-style: none;
   list-style-position: inside;
   list-style-type: none;
 }
