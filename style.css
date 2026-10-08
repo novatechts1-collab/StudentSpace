@@ -114,7 +114,7 @@ header img:active {
   transform: scale(0.9);
 }
 
-header nav {
+.top-nav {
   display: flex;
   align-items: center;
   padding: 1rem 2rem;
@@ -122,14 +122,12 @@ header nav {
   gap: 1.5rem;
 }
 
-/* Nav Pill Links */
-header nav span,
-header nav a {
+.top-nav a {
   display: inline-flex;
   align-items: center;
   color: var(--header-span-color);
   background-color: transparent;
-  padding: 0.5rem 1rem;
+  padding: 1rem 2rem;
   border-radius: 9999px;
   font-weight: 600;
   transition:
@@ -138,10 +136,12 @@ header nav a {
     transform 0.2s ease;
 }
 
-header nav a:hover {
-  background-color: var(--header-hover-bg);
-  transform: scale(1.05);
+.top-nav a:hover {
+  background-color: var(--header-hover-bg) !important;
+  transform: translateY(-2px);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 #home {
   background-color: var(--header-hover-bg);
 }
@@ -349,16 +349,10 @@ header nav a:hover {
   border-radius: 100px;
   transition: all 0.2s ease-in-out;
 }
-.tools-info {
+.info-game {
   display: flex;
-  flex-direction: column;
-}
-.info-tier {
-  display: flex;
-  align-items: center;
   flex-direction: row;
-  padding: 1rem;
-  gap: 2rem;
+  gap: 3rem;
 }
 .active-info {
   margin: 0.625rem 0rem 0rem 1rem;
@@ -370,6 +364,7 @@ header nav a:hover {
     var(--svg-bg) 90%
   );
   width: 53%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   opacity: 1;
@@ -434,4 +429,33 @@ header nav a:hover {
 .s-button:active {
   transform: scale(0.98);
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.game {
+  width: 40%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+.game-grid {
+  display: grid;
+  width: calc(80% - 2rem);
+  padding: 1rem;
+  margin: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 2rem;
+}
+.orbs {
+  display: flex;
+  border-radius: 9999px;
+  background-color: var(--header-hover-bg);
+  justify-content: center;
+  padding: 1rem;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.orbs:hover{
+  cursor: pointer;
+}
+.orbs:active {
+  transform: translateY(-4px);
 }
