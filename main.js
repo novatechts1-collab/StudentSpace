@@ -42,17 +42,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
   game.addEventListener("click", (event) => {
-    clickCount++;
-    let marker = Math.abs(3.5 - clickCount);
-    console.log(`ClickCount : ${clickCount}, Marker : ${marker}`);
     if (event.target.matches(".orbs")) {
+      let currentClicks = Number(event.target.dataset.clicks) || 0;
+      currentClicks++;
+      let marker = Math.abs(3.5 - currentClicks);
+      if (currentClicks >= 6) {
+        currentClicks = 0;
+      }
+      event.target.dataset.clicks = currentClicks;
+      console.log(`ClickCount : ${currentClicks}, Marker : ${marker}`);
       if (marker === 2.5) {
         event.target.classList.toggle("selected");
-      }
-      else if (marker === 1.5) {
+      } else if (marker === 1.5) {
         event.target.classList.toggle("selected-deux");
-      } 
-      else if (marker === 0.5) {
+      } else if (marker === 0.5) {
         event.target.classList.toggle("selected-trois");
       }
     }
