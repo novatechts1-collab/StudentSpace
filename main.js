@@ -42,6 +42,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
   game.addEventListener("click", (event) => {
+    const alpha = document.querySelector("#orb1");
+    const beta = document.querySelector("#orb2");
+    const gamma = document.querySelector("#orb3");
+    const delta = document.querySelector("#orb4");
+    const epsilon = document.querySelector("#orb5");
+    const zeta = document.querySelector("#orb6");
+    const eta = document.querySelector("#orb7");
+    const theta = document.querySelector("#orb8");
+    const iota = document.querySelector("#orb9");
     if (event.target.matches(".orbs")) {
       let currentClicks = Number(event.target.dataset.clicks) || 0;
       currentClicks++;
@@ -50,13 +59,30 @@ document.addEventListener("DOMContentLoaded", () => {
         currentClicks = 0;
       }
       event.target.dataset.clicks = currentClicks;
-      console.log(`ClickCount : ${currentClicks}, Marker : ${marker}`);
+      const Combination = [
+        alpha.dataset.clicks,
+        beta.dataset.clicks,
+        gamma.dataset.clicks,
+        delta.dataset.clicks,
+        epsilon.dataset.clicks,
+        zeta.dataset.clicks,
+        eta.dataset.clicks,
+        theta.dataset.clicks,
+        iota.dataset.clicks,
+      ];
+      const winningCombo = [1, 2, 3, 2, 3, 1, 3, 1, 2];
       if (marker === 2.5) {
         event.target.classList.toggle("selected");
       } else if (marker === 1.5) {
         event.target.classList.toggle("selected-deux");
       } else if (marker === 0.5) {
         event.target.classList.toggle("selected-trois");
+      }
+      if (Combination.join() === winningCombo.join()) {
+        console.log("You win");
+        document
+          .querySelectorAll(".orbs")
+          .forEach((el) => el.classList.add("win"));
       }
     }
   });

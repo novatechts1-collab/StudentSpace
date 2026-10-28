@@ -463,6 +463,9 @@ header img:active {
 .orbs.selected-trois{
   background: green;
 }
+.orbs.win{
+  background-color: #94a3b8;
+}
 .orbs:hover{
   cursor: pointer;
 }
