@@ -19,7 +19,12 @@ const secret = document.querySelector(".secret");
 const secretText = document.querySelector(".secret-text");
 const omega = document.querySelector(".omega");
 const activeInfo = document.querySelector(".active-info");
-
+const themeMap = {
+  "green-dark": "Green with dark accents",
+  "green-light": "Green with light accents",
+  "blue-light": "Blue with light accents",
+  "blue-dark": "Blue with dark accents",
+};
 function toggleAmbientHum() {
   if (!isAmbientPlaying) {
     ambientContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -81,6 +86,8 @@ darkbutton.addEventListener("click", () => {
     darkbutton.src = "assets/images/logo/vector/default-monochrome-black.svg";
   }
   let currentTheme = document.documentElement.dataset.theme;
+  let themeText = themeMap[currentTheme]
+  console.log(themeText)
   localStorage.setItem("theme", currentTheme);
 });
 window.addEventListener("load", () => {
@@ -124,6 +131,8 @@ document.addEventListener("DOMContentLoaded", () => {
   if ("scrollRestoration" in history) {
     history.scrollRestoration = "auto";
   }
+  
+
   carousel.addEventListener("click", (event) => {
     if (event.target.matches(".carousel-mini")) {
       document
