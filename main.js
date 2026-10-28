@@ -94,14 +94,22 @@ document.addEventListener("DOMContentLoaded", () => {
   const activeInfo = document.querySelector(".active-info");
   darkbutton.addEventListener("click", () => {
     clickCount++;
-    if (clickCount % 2 === 1) {
-      document.documentElement.setAttribute("data-theme", "light");
-      darkbutton.src = "assets/images/logo/vector/default-monochrome-black.svg";
-      console.log("Light Mode");
-    } else {
+    if (clickCount % 4 === 0) {
       document.documentElement.removeAttribute("data-theme");
       darkbutton.src = "assets/images/logo/vector/default-monochrome-white.svg";
-      console.log("Dark Mode");
+      console.log("Dark Mode - Forest");
+    } else if (clickCount % 4 === 1) {
+      document.documentElement.setAttribute("data-theme", "green-light");
+      darkbutton.src = "assets/images/logo/vector/default-monochrome-black.svg";
+      console.log("Light Mode - Forest");
+    } else if (clickCount % 4 === 2) {
+      document.documentElement.setAttribute("data-theme", "blue-dark");
+      darkbutton.src = "assets/images/logo/vector/default-monochrome-white.svg";
+      console.log("Dark Mode - Ocean");
+    } else if (clickCount % 4 === 3) {
+      document.documentElement.setAttribute("data-theme", "blue-light");
+      darkbutton.src = "assets/images/logo/vector/default-monochrome-black.svg";
+      console.log("Light Mode - Ocean");
     }
   });
   carousel.addEventListener("click", (event) => {
@@ -116,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
     clickCount++;
 
     if (clickCount === 1) {
-      console.log(clickCount)
+      console.log(clickCount);
       playTerminalSound(440, "sine", 0.1);
       secret.classList.add("fade");
       omega.classList.add("clicked");
@@ -127,7 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
         secret.classList.remove("fade");
       }, 200);
     } else if (clickCount === 2) {
-      console.log(clickCount)
+      console.log(clickCount);
       playTerminalSound(554, "sine", 0.1);
       secretText.classList.add("fade");
       omega.classList.add("clickedmore");
@@ -137,7 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
         secretText.classList.remove("fade");
       }, 200);
     } else if (clickCount === 3) {
-      console.log(clickCount)
+      console.log(clickCount);
       playTerminalSound(523, "triangle", 0.15);
       setTimeout(() => playTerminalSound(659, "triangle", 0.15), 100);
       setTimeout(() => playTerminalSound(784, "triangle", 0.3), 200);
