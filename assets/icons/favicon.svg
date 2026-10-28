@@ -2,13 +2,13 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="13.724999mm"
-   height="13.724999mm"
-   viewBox="0 0 13.724999 13.724999"
+   width="24.09676mm"
+   height="22.95048mm"
+   viewBox="0 0 24.09676 22.95048"
    version="1.1"
    id="svg1"
+   sodipodi:docname="drawing5.svg"
    inkscape:version="1.4.4 (dcaf3e7, 2026-05-05)"
-   sodipodi:docname="drawing.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -24,15 +24,15 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="7.0555555"
-     inkscape:cx="45.141732"
-     inkscape:cy="30.259843"
+     inkscape:zoom="3.5277778"
+     inkscape:cx="-24.377953"
+     inkscape:cy="57.11811"
      inkscape:window-width="1360"
      inkscape:window-height="697"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer2" />
+     inkscape:current-layer="layer1" />
   <defs
      id="defs1">
     <linearGradient
@@ -93,27 +93,18 @@
        y1="0"
        x2="32"
        y2="0" />
-    <linearGradient
-       inkscape:collect="always"
-       xlink:href="#74bd9b43-4b85-4825-96b3-10777c5b0f49"
-       id="linearGradient7"
-       x1="104.8875"
-       y1="157.2"
-       x2="116.0625"
-       y2="146.3625"
-       gradientUnits="userSpaceOnUse" />
   </defs>
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-103.6125,-144.90001)">
+     transform="translate(-92.95162,-137.02476)">
     <g
        data-v-fde0c5aa=""
        id="3cb7d2ec-2743-4fd1-949f-fdc46d47e7c1"
        stroke="none"
        fill="url(#74bd9b43-4b85-4825-96b3-10777c5b0f49)"
-       transform="matrix(0.42723252,0,0,0.42723252,103.64166,144.95417)"
+       transform="matrix(0.42723252,0,0,0.42723252,98.16428,141.66428)"
        style="fill:url(#linearGradient11)"
        sodipodi:insensitive="true">
       <path
@@ -129,29 +120,32 @@
          id="path5"
          style="fill:url(#linearGradient1)" />
     </g>
-  </g>
-  <g
-     inkscape:groupmode="layer"
-     id="layer2"
-     inkscape:label="Layer 2"
-     transform="translate(-103.6125,-144.90001)">
-    <rect
-       style="fill:#00ff00;fill-opacity:0;stroke-width:0.529167;stroke-dasharray:none"
-       id="rect2"
-       width="13.724999"
-       height="13.724999"
-       x="103.6125"
-       y="144.90001" />
     <g
-       id="g7">
-      <path
-         style="fill:url(#linearGradient7);fill-opacity:1;stroke-width:0.529167;stroke-dasharray:none"
-         d="m 104.9625,157.275 11.025,-10.9875"
-         id="path2" />
+       id="g8">
+      <ellipse
+         style="fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.0248644;stroke-dasharray:none;stroke-opacity:1"
+         id="path6"
+         cx="105"
+         cy="148.5"
+         rx="12.035948"
+         ry="11.462808" />
+      <g
+         id="g7"
+         style="stroke-width:0.0132292;stroke-dasharray:none">
+        <g
+           id="g6"
+           transform="matrix(0.72836543,0,0,0.67233012,28.517728,48.699727)"
+           style="stroke-width:0.0189046;stroke-dasharray:none">
+          <path
+             style="fill:#000000;fill-opacity:0;stroke-width:0.0189046;stroke-dasharray:none"
+             d="m 99.489923,153.90179 11.030867,-10.9248"
+             id="path1" />
+          <path
+             style="fill:#000000;fill-opacity:0;stroke-width:0.0189046;stroke-dasharray:none"
+             d="m 105.16445,148.38636 5.35634,5.4624"
+             id="path2" />
+        </g>
+      </g>
     </g>
-    <path
-       style="fill:#000000;fill-opacity:0.00401605;stroke-width:0.529167;stroke-dasharray:none"
-       d="m 110.55,151.7625 5.4,5.55"
-       id="path6" />
   </g>
 </svg>
