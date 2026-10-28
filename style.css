@@ -445,13 +445,23 @@ header img:active {
   grid-template-rows: repeat(3, 1fr);
   gap: 2rem;
 }
+
 .orbs {
   display: flex;
   border-radius: 9999px;
-  background-color: var(--header-hover-bg);
+  background-color: transparent;
   justify-content: center;
   padding: 1rem;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.orbs.selected{
+  background-color: var(--header-hover-bg);
+}
+.orbs.selected-deux{
+  background: linear-gradient(135deg, var(--header-hover-bg), var(--carousel-bg));
+}
+.orbs.selected-trois{
+  background: linear-gradient(135deg, var(--header-hover-bg), var(--carousel-bg), var(--getstart-bg));
 }
 .orbs:hover{
   cursor: pointer;

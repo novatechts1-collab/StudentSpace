@@ -1,4 +1,15 @@
+window.addEventListener("load", () => {
+  requestAnimationFrame(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  });
+});
 document.addEventListener("DOMContentLoaded", () => {
+  if ("scrollRestoration" in history) {
+    history.scrollRestoration = "manual";
+  }
   const darkbutton = document.querySelector("#logo-header");
   let clickCount = 0;
   const carousel = document.querySelector(".carousel");
@@ -8,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const news = document.querySelector("#news");
   const lounge = document.querySelector("#lounge");
   const comm = document.querySelector("#commu");
+  const game = document.querySelector(".game-grid");
   const activeInfo = document.querySelector(".active-info");
   darkbutton.addEventListener("click", () => {
     clickCount++;
@@ -27,6 +39,29 @@ document.addEventListener("DOMContentLoaded", () => {
         .querySelectorAll(".carousel-mini")
         .forEach((el) => el.classList.remove("selected"));
       event.target.classList.toggle("selected");
+    }
+  });
+  game.addEventListener("click", (event) => {
+    clickCount++;
+    if (event.target.matches(".orbs")) {
+      if (clickCount == 1) {
+        event.target.classList.add("selected");
+      }
+      else if (clickCount === 2) {
+        event.target.classList.add("selected-deux");
+      } 
+      else if (clickCount === 3) {
+        event.target.classList.add("selected-trois");
+      }
+      else if( clickCount === 4) {
+        event.target.classList.remove("selected-trois")
+      }
+      else if( clickCount === 5) {
+        event.target.classList.remove("selected-deux")
+      }
+      else if( clickCount === 6) {
+        event.target.classList.remove("selected")
+      }
     }
   });
   calc.addEventListener("click", () => {
