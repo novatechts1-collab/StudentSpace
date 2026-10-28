@@ -19,8 +19,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const news = document.querySelector("#news");
   const lounge = document.querySelector("#lounge");
   const comm = document.querySelector("#commu");
+  const board = document.querySelector(".game");
   const game = document.querySelector(".game-grid");
   const orbs = document.querySelectorAll(".orbs");
+  secret = document.querySelector(".secret");
+  const secretText = document.querySelector(".secret-text");
+  const omega = document.querySelector(".omega");
   const activeInfo = document.querySelector(".active-info");
   darkbutton.addEventListener("click", () => {
     clickCount++;
@@ -40,6 +44,37 @@ document.addEventListener("DOMContentLoaded", () => {
         .querySelectorAll(".carousel-mini")
         .forEach((el) => el.classList.remove("selected"));
       event.target.classList.toggle("selected");
+    }
+  });
+  omega.addEventListener("click", () => {
+    clickCount++;
+
+    if (clickCount === 1) {
+      secret.classList.add("fade");
+      omega.classList.add("clicked");
+
+      setTimeout(() => {
+        secretText.classList.add("found");
+        secretText.innerHTML = "Tap me twice more to unlock the hidden core";
+        secret.classList.remove("fade");
+      }, 200);
+    } else if (clickCount === 2) {
+      secretText.classList.add("fade");
+      omega.classList.add("clickedmore");
+
+      setTimeout(() => {
+        secretText.innerHTML = "Tap me one more time to bring the board online";
+        secretText.classList.remove("fade");
+      }, 200);
+    } else if (clickCount === 3) {
+      secretText.classList.add("fade");
+      omega.classList.add("fade");
+
+      setTimeout(() => {
+        omega.classList.add("bye");
+        secretText.classList.remove("found");
+        board.classList.add("found");
+      }, 300);
     }
   });
   game.addEventListener("click", (event) => {
@@ -126,10 +161,10 @@ document.addEventListener("DOMContentLoaded", () => {
       activeInfo.innerHTML =
         "<span class=" +
         "'info-header'" +
-        " >Calculators Hub: Crunch Your Numbers</span> <span class= " +
+        " >Calculators Hub</span> <span class= " +
         "'tagline'>Instant tools to evaluate your admission eligibility and academic standing</span><ul><li>UTME & Post-UTME Aggregate Score Checker</li><li>Departmental Cut-off Mark Eligibility Estimator</li><li>Targeted Score Calculator for Competitive Courses</li><li>GPA & CGPA Tracker for All Semesters</li></ul><button class=" +
         "'s-button'>Launch Calculator Tool →</button>";
-
+      omega.classList.add("found");
       activeInfo.classList.remove("fade-out");
     }, 400);
   });
