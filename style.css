@@ -509,20 +509,24 @@ header img:active {
 
 .orbs {
   display: flex;
-  border-radius: 9999px;
+  width: 2rem;
+  box-sizing: content-box;
+  padding: 1rem;
+  border: 1px solid var(--svg-border);
+  color: var(--svg-icon-color);
+  border-radius: 100px;
   background-color: transparent;
   justify-content: center;
-  padding: 1rem;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .orbs.selected {
-  background: var(--game-cell-default);
+  background-color: var(--game-cell-default);
 }
 .orbs.selected-deux {
-background: var(--game-cell-alt);
+background-color: var(--game-cell-alt);
 }
 .orbs.selected-trois {
-  background: var(--game-cell-active);
+  background-color: var(--game-cell-active);
 }
 .orbs:hover {
   cursor: pointer;
