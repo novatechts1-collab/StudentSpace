@@ -33,6 +33,10 @@
   --selected-bg: rgba(59, 130, 246, 0.12);
   --selected-border: #3b82f6;
   --carousel-bg: #15203b;
+  --game-cell-default: #1e293b;
+  --game-cell-active: #3b82f6;    
+  --game-cell-alt: #64748b;       
+  --game-cell-win: #f59e0b;
 }
 
 [data-theme="light"] {
@@ -64,6 +68,12 @@
   --selected-bg: #dbeafe;
   --selected-border: #2563eb;
   --carousel-bg: #f1f5f9;
+  
+
+  --game-cell-default: #cbd5e1;
+  --game-cell-active: #2563eb;
+  --game-cell-alt: #475569;       
+  --game-cell-win: #d97706;
 }
 
 * {
@@ -506,13 +516,13 @@ header img:active {
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .orbs.selected {
-  background-color: red;
+  background: var(--game-cell-default);
 }
 .orbs.selected-deux {
-  background: orange;
+background: var(--game-cell-alt);
 }
 .orbs.selected-trois {
-  background: green;
+  background: var(--game-cell-active);
 }
 .orbs:hover {
   cursor: pointer;
@@ -522,23 +532,23 @@ header img:active {
 }
 @keyframes orbwin {
   0% {
-    background-color: orange;
+    background: var(--game-cell-alt);
     transform: scale(1);
   }
   25% {
-    background-color: red;
+    background: var(--game-cell-default);
     transform: scale(0.9);
   }
   50% {
-    background-color: green;
+    bbackground: var(--game-cell-active);
     transform: scale(0.95);
   }
   75% {
-    background-color: red;
+    background: var(--game-cell-default);
     transform: scale(0.9);
   }
   100% {
-    background-color: orange;
+    background: var(--game-cell-alt);
     transform: scale(1);
   }
 }
