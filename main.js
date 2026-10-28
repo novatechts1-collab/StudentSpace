@@ -43,24 +43,17 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   game.addEventListener("click", (event) => {
     clickCount++;
+    let marker = Math.abs(3.5 - clickCount);
+    console.log(`ClickCount : ${clickCount}, Marker : ${marker}`);
     if (event.target.matches(".orbs")) {
-      if (clickCount == 1) {
-        event.target.classList.add("selected");
+      if (marker === 2.5) {
+        event.target.classList.toggle("selected");
       }
-      else if (clickCount === 2) {
-        event.target.classList.add("selected-deux");
+      else if (marker === 1.5) {
+        event.target.classList.toggle("selected-deux");
       } 
-      else if (clickCount === 3) {
-        event.target.classList.add("selected-trois");
-      }
-      else if( clickCount === 4) {
-        event.target.classList.remove("selected-trois")
-      }
-      else if( clickCount === 5) {
-        event.target.classList.remove("selected-deux")
-      }
-      else if( clickCount === 6) {
-        event.target.classList.remove("selected")
+      else if (marker === 0.5) {
+        event.target.classList.toggle("selected-trois");
       }
     }
   });

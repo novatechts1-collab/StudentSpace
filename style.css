@@ -455,13 +455,13 @@ header img:active {
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .orbs.selected{
-  background-color: var(--header-hover-bg);
+  background-color: red;
 }
 .orbs.selected-deux{
-  background: linear-gradient(135deg, var(--header-hover-bg), var(--carousel-bg));
+  background: orange;
 }
 .orbs.selected-trois{
-  background: linear-gradient(135deg, var(--header-hover-bg), var(--carousel-bg), var(--getstart-bg));
+  background: green;
 }
 .orbs:hover{
   cursor: pointer;
