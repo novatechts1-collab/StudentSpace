@@ -1,11 +1,15 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="green-dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Welcome to the StudentSpace Community</title>
     <link rel="stylesheet" href="css\all.min.css" />
     <link rel="stylesheet" href="style.css" />
+    <script>
+      const savedTheme = localStorage.getItem("theme") || "green-dark";
+      document.documentElement.dataset.theme = savedTheme;
+    </script>
     <script src="main.js" defer></script>
   </head>
   <body>
@@ -315,24 +319,43 @@
             <div class="game">
               <span class="card-header">Wanna play a game?</span>
               <div class="game-tut">
-              <div class="game-grid">
-                <svg class="orbs" data-clicks="0" id="orb1"><circle cx="12" cy="12" r="1"/></svg>
-                <svg class="orbs" data-clicks="0" id="orb2"><circle cx="12" cy="12" r="1"/></svg>
-                <svg class="orbs" data-clicks="0" id="orb3"><circle cx="12" cy="12" r="1"/></svg>
-                <svg class="orbs" data-clicks="0" id="orb4"><circle cx="12" cy="12" r="1"/></svg>
-                <svg class="orbs" data-clicks="0" id="orb5"><circle cx="12" cy="12" r="1"/></svg>
-                <svg class="orbs" data-clicks="0" id="orb6"><circle cx="12" cy="12" r="1"/></svg>
-                <svg class="orbs" data-clicks="0" id="orb7"><circle cx="12" cy="12" r="1"/></svg>
-                <svg class="orbs" data-clicks="0" id="orb8"><circle cx="12" cy="12" r="1"/></svg>
-                <svg class="orbs" data-clicks="0" id="orb9"><circle cx="12" cy="12" r="1"/></svg>
+                <div class="game-grid">
+                  <svg class="orbs" data-clicks="0" id="orb1">
+                    <circle cx="12" cy="12" r="1" />
+                  </svg>
+                  <svg class="orbs" data-clicks="0" id="orb2">
+                    <circle cx="12" cy="12" r="1" />
+                  </svg>
+                  <svg class="orbs" data-clicks="0" id="orb3">
+                    <circle cx="12" cy="12" r="1" />
+                  </svg>
+                  <svg class="orbs" data-clicks="0" id="orb4">
+                    <circle cx="12" cy="12" r="1" />
+                  </svg>
+                  <svg class="orbs" data-clicks="0" id="orb5">
+                    <circle cx="12" cy="12" r="1" />
+                  </svg>
+                  <svg class="orbs" data-clicks="0" id="orb6">
+                    <circle cx="12" cy="12" r="1" />
+                  </svg>
+                  <svg class="orbs" data-clicks="0" id="orb7">
+                    <circle cx="12" cy="12" r="1" />
+                  </svg>
+                  <svg class="orbs" data-clicks="0" id="orb8">
+                    <circle cx="12" cy="12" r="1" />
+                  </svg>
+                  <svg class="orbs" data-clicks="0" id="orb9">
+                    <circle cx="12" cy="12" r="1" />
+                  </svg>
+                </div>
+                <span class="tutorial"
+                  >To win this minigame, you have to fill all column with the
+                  same color</span
+                >
               </div>
-              <span class="tutorial">To win this minigame, you have to fill all column with the same color</span>
-            </div>
             </div>
             <div class="secret">
-              <span class="secret-text"
-                ></span
-              >
+              <span class="secret-text"></span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"

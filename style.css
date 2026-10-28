@@ -5,7 +5,7 @@
   font-display: swap;
 }
 
-:root {
+[data-theme="green-dark"] {
   --background: #101914;
   --foreground: #edf3ed;
   --card: #1b2921;

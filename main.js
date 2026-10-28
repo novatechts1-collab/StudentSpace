@@ -2,6 +2,24 @@ let ambientContext = null;
 let ambientOsc = null;
 let ambientGain = null;
 let isAmbientPlaying = false;
+
+const darkbutton = document.querySelector("#logo-header");
+let clickCount = 0;
+const carousel = document.querySelector(".carousel");
+const calc = document.querySelector("#calc");
+const cbt = document.querySelector("#cbt");
+const lib = document.querySelector("#lib");
+const news = document.querySelector("#news");
+const lounge = document.querySelector("#lounge");
+const comm = document.querySelector("#commu");
+const board = document.querySelector(".game");
+const game = document.querySelector(".game-grid");
+const orbs = document.querySelectorAll(".orbs");
+const secret = document.querySelector(".secret");
+const secretText = document.querySelector(".secret-text");
+const omega = document.querySelector(".omega");
+const activeInfo = document.querySelector(".active-info");
+
 function toggleAmbientHum() {
   if (!isAmbientPlaying) {
     ambientContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -43,14 +61,44 @@ function toggleAmbientHum() {
     }
   }
 }
-window.addEventListener("load", () => {
-  requestAnimationFrame(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  });
+
+darkbutton.addEventListener("click", () => {
+  clickCount++;
+  if (clickCount > 3) {
+    clickCount = 0;
+  }
+  if (clickCount === 0) {
+    document.documentElement.setAttribute("data-theme", "green-dark");
+    darkbutton.src = "assets/images/logo/vector/default-monochrome-white.svg";
+  } else if (clickCount === 1) {
+    document.documentElement.setAttribute("data-theme", "green-light");
+    darkbutton.src = "assets/images/logo/vector/default-monochrome-black.svg";
+  } else if (clickCount === 2) {
+    document.documentElement.setAttribute("data-theme", "blue-dark");
+    darkbutton.src = "assets/images/logo/vector/default-monochrome-white.svg";
+  } else if (clickCount === 3) {
+    document.documentElement.setAttribute("data-theme", "blue-light");
+    darkbutton.src = "assets/images/logo/vector/default-monochrome-black.svg";
+  }
+  let currentTheme = document.documentElement.dataset.theme;
+  localStorage.setItem("theme", currentTheme);
 });
+window.addEventListener("load", () => {
+  if (savedTheme === "green-dark") {
+    clickCount = 0;
+    darkbutton.src = "assets/images/logo/vector/default-monochrome-white.svg";
+  } else if (savedTheme === "green-light") {
+    clickCount = 1;
+    darkbutton.src = "assets/images/logo/vector/default-monochrome-black.svg";
+  } else if (savedTheme === "blue-dark") {
+    clickCount = 2;
+    darkbutton.src = "assets/images/logo/vector/default-monochrome-white.svg";
+  } else if (savedTheme === "blue-light") {
+    clickCount = 3;
+    darkbutton.src = "assets/images/logo/vector/default-monochrome-black.svg";
+  }
+});
+
 function playTerminalSound(frequency, type, duration) {
   try {
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -74,44 +122,8 @@ function playTerminalSound(frequency, type, duration) {
 }
 document.addEventListener("DOMContentLoaded", () => {
   if ("scrollRestoration" in history) {
-    history.scrollRestoration = "manual";
+    history.scrollRestoration = "auto";
   }
-  const darkbutton = document.querySelector("#logo-header");
-  let clickCount = 0;
-  const carousel = document.querySelector(".carousel");
-  const calc = document.querySelector("#calc");
-  const cbt = document.querySelector("#cbt");
-  const lib = document.querySelector("#lib");
-  const news = document.querySelector("#news");
-  const lounge = document.querySelector("#lounge");
-  const comm = document.querySelector("#commu");
-  const board = document.querySelector(".game");
-  const game = document.querySelector(".game-grid");
-  const orbs = document.querySelectorAll(".orbs");
-  secret = document.querySelector(".secret");
-  const secretText = document.querySelector(".secret-text");
-  const omega = document.querySelector(".omega");
-  const activeInfo = document.querySelector(".active-info");
-  darkbutton.addEventListener("click", () => {
-    clickCount++;
-    if (clickCount % 4 === 0) {
-      document.documentElement.removeAttribute("data-theme");
-      darkbutton.src = "assets/images/logo/vector/default-monochrome-white.svg";
-      console.log("Dark Mode - Forest");
-    } else if (clickCount % 4 === 1) {
-      document.documentElement.setAttribute("data-theme", "green-light");
-      darkbutton.src = "assets/images/logo/vector/default-monochrome-black.svg";
-      console.log("Light Mode - Forest");
-    } else if (clickCount % 4 === 2) {
-      document.documentElement.setAttribute("data-theme", "blue-dark");
-      darkbutton.src = "assets/images/logo/vector/default-monochrome-white.svg";
-      console.log("Dark Mode - Ocean");
-    } else if (clickCount % 4 === 3) {
-      document.documentElement.setAttribute("data-theme", "blue-light");
-      darkbutton.src = "assets/images/logo/vector/default-monochrome-black.svg";
-      console.log("Light Mode - Ocean");
-    }
-  });
   carousel.addEventListener("click", (event) => {
     if (event.target.matches(".carousel-mini")) {
       document
