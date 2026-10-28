@@ -72,13 +72,25 @@ document.addEventListener("DOMContentLoaded", () => {
         Number(iota.dataset.clicks),
       ];
       let colourMap = {
-        0: 'off', 
-        1: 'red', 5: 'red',
-        2: 'yellow', 4: 'yellow',
-        3: 'green'
-    }
-    let mappedOut = Combination.map(val => colourMap[val])
-      const winningCombo = ['red', 'yellow', 'green', 'yellow', 'green', 'red', 'green', 'red', 'yellow'];
+        0: "off",
+        1: "red",
+        5: "red",
+        2: "yellow",
+        4: "yellow",
+        3: "green",
+      };
+      let mappedOut = Combination.map((val) => colourMap[val]);
+      const winningCombo = [
+        "red",
+        "yellow",
+        "green",
+        "yellow",
+        "green",
+        "red",
+        "green",
+        "red",
+        "yellow",
+      ];
       if (marker === 2.5) {
         event.target.classList.toggle("selected");
       } else if (marker === 1.5) {
@@ -86,13 +98,11 @@ document.addEventListener("DOMContentLoaded", () => {
       } else if (marker === 0.5) {
         event.target.classList.toggle("selected-trois");
       }
-      if (currentClicks === 0) {
-      }
-      if (
-        mappedOut.join() === winningCombo.join()
-      ) {
-        console.log("You win, Victory Animation started")
-        console.log(`Picked Combination is [${Combination}] , MappedOut Combination is [${mappedOut}]`);
+      if (mappedOut.join() === winningCombo.join()) {
+        console.log("You win, Victory Animation started");
+        console.log(
+          `Picked Combination is [${Combination}] , MappedOut Combination is [${mappedOut}]`,
+        );
         setTimeout(() => {
           orbs.forEach((el) => el.classList.add("win"));
         }, 500);
