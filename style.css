@@ -470,10 +470,12 @@ header img:active {
   transform: translateY(-4px);
 }
 @keyframes orbwin {
-  0% { background-color: red; transform: scale(1.0);}
-  33% { background-color: orange; transform: scale(1.1);}
-  66% { background-color: green; transform: scale(0.9);}
-  100% { background-color: red; transform: scale(1.0);}
+  0% { background-color: orange; transform: scale(1.0);}
+  25% { background-color: red; transform: scale(0.9);}
+  50% { background-color: green; transform: scale(0.95);}
+  75% { background-color: red; transform: scale(0.9);}
+  100% { background-color: orange; transform: scale(1.0);}
+
 }
 .orbs.win{
   animation: orbwin 10s ease-in-out;

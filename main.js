@@ -71,8 +71,14 @@ document.addEventListener("DOMContentLoaded", () => {
         Number(theta.dataset.clicks),
         Number(iota.dataset.clicks),
       ];
-      const winningCombo = [1, 2, 3, 2, 3, 1, 3, 1, 2];
-      const winningCombo2 = [5, 4, 3, 4, 3, 5, 3, 4, 5];
+      let colourMap = {
+        0: 'off', 
+        1: 'red', 5: 'red',
+        2: 'yellow', 4: 'yellow',
+        3: 'green'
+    }
+    let mappedOut = Combination.map(val => colourMap[val])
+      const winningCombo = ['red', 'yellow', 'green', 'yellow', 'green', 'red', 'green', 'red', 'yellow'];
       if (marker === 2.5) {
         event.target.classList.toggle("selected");
       } else if (marker === 1.5) {
@@ -83,10 +89,10 @@ document.addEventListener("DOMContentLoaded", () => {
       if (currentClicks === 0) {
       }
       if (
-        Combination.join() === winningCombo.join() ||
-        Combination.join() === winningCombo2.join()
+        mappedOut.join() === winningCombo.join()
       ) {
-        console.log("You win, Victory Animation started");
+        console.log("You win, Victory Animation started")
+        console.log(`Picked Combination is [${Combination}] , MappedOut Combination is [${mappedOut}]`);
         setTimeout(() => {
           orbs.forEach((el) => el.classList.add("win"));
         }, 500);
@@ -102,7 +108,6 @@ document.addEventListener("DOMContentLoaded", () => {
     orbs.forEach((el) =>
       el.classList.remove("win", "selected", "selected-deux", "selected-trois"),
     );
-    console.log(`${Combination}, ${alpha.dataset.clicks}`);
   });
   calc.addEventListener("click", () => {
     activeInfo.classList.add("fade-out");
