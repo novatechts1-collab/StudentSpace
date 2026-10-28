@@ -1,0 +1,14 @@
+
+Hope you enjoy your new logo, here are the people that
+made your beautiful logo happen :)
+font name: Kingthings_Exeter
+font link: http://www.kingthingsfonts.co.uk/fonts/fonts.htm
+font author: Kingthings
+font author site: http://www.kingthingsfonts.co.uk/
+Slogan Font: Questrial-Regular.otf
+
+icon designer: undefined
+icon designer link: undefined
+        
+{"bg":"transparent","icon-gradient-0":"#085B20","icon-gradient-1":"#41E296","font":"#000000","slogan":"#141414"}
+      
