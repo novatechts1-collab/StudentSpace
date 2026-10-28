@@ -1,3 +1,48 @@
+let ambientContext = null;
+let ambientOsc = null;
+let ambientGain = null;
+let isAmbientPlaying = false;
+function toggleAmbientHum() {
+  if (!isAmbientPlaying) {
+    ambientContext = new (window.AudioContext || window.webkitAudioContext)();
+
+    ambientOsc = ambientContext.createOscillator();
+    ambientGain = ambientContext.createGain();
+    const filter = ambientContext.createBiquadFilter();
+
+    ambientOsc.type = "triangle";
+    ambientOsc.frequency.setValueAtTime(65.41, ambientContext.currentTime);
+
+    filter.type = "lowpass";
+    filter.frequency.setValueAtTime(150, ambientContext.currentTime);
+
+    ambientGain.gain.setValueAtTime(0.001, ambientContext.currentTime);
+    ambientGain.gain.exponentialRampToValueAtTime(
+      0.025,
+      ambientContext.currentTime + 2,
+    );
+
+    ambientOsc.connect(filter);
+    filter.connect(ambientGain);
+    ambientGain.connect(ambientContext.destination);
+
+    ambientOsc.start();
+    isAmbientPlaying = true;
+  } else {
+    if (ambientGain && ambientContext) {
+      ambientGain.gain.exponentialRampToValueAtTime(
+        0.001,
+        ambientContext.currentTime + 1,
+      );
+      setTimeout(() => {
+        ambientOsc.stop();
+        ambientOsc.disconnect();
+        ambientContext.close();
+        isAmbientPlaying = false;
+      }, 1000);
+    }
+  }
+}
 window.addEventListener("load", () => {
   requestAnimationFrame(() => {
     window.scrollTo({
@@ -6,6 +51,27 @@ window.addEventListener("load", () => {
     });
   });
 });
+function playTerminalSound(frequency, type, duration) {
+  try {
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+
+    osc.type = type;
+    osc.frequency.setValueAtTime(frequency, audioCtx.currentTime);
+    gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(
+      0.0001,
+      audioCtx.currentTime + duration,
+    );
+
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+
+    osc.start();
+    osc.stop(audioCtx.currentTime + duration);
+  } catch (e) {}
+}
 document.addEventListener("DOMContentLoaded", () => {
   if ("scrollRestoration" in history) {
     history.scrollRestoration = "manual";
@@ -50,6 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
     clickCount++;
 
     if (clickCount === 1) {
+      playTerminalSound(440, "sine", 0.1);
       secret.classList.add("fade");
       omega.classList.add("clicked");
 
@@ -59,6 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
         secret.classList.remove("fade");
       }, 200);
     } else if (clickCount === 2) {
+      playTerminalSound(554, "sine", 0.1);
       secretText.classList.add("fade");
       omega.classList.add("clickedmore");
 
@@ -67,6 +135,9 @@ document.addEventListener("DOMContentLoaded", () => {
         secretText.classList.remove("fade");
       }, 200);
     } else if (clickCount === 3) {
+      playTerminalSound(523, "triangle", 0.15);
+      setTimeout(() => playTerminalSound(659, "triangle", 0.15), 100);
+      setTimeout(() => playTerminalSound(784, "triangle", 0.3), 200);
       secretText.classList.add("fade");
       omega.classList.add("fade");
 
@@ -156,6 +227,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   calc.addEventListener("click", () => {
     activeInfo.classList.add("fade-out");
+    playTerminalSound(261.63, "sine", 0.1);
     void activeInfo.offsetWidth;
     setTimeout(() => {
       activeInfo.innerHTML =
@@ -170,6 +242,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   cbt.addEventListener("click", () => {
     activeInfo.classList.add("fade-out");
+    playTerminalSound(293.66, "sine", 0.1);
     void activeInfo.offsetWidth;
     setTimeout(() => {
       activeInfo.innerHTML =
@@ -184,6 +257,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   lib.addEventListener("click", () => {
     activeInfo.classList.add("fade-out");
+    playTerminalSound(329.63, "sine", 0.1);
     void activeInfo.offsetWidth;
     setTimeout(() => {
       activeInfo.innerHTML =
@@ -198,6 +272,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   news.addEventListener("click", () => {
     activeInfo.classList.add("fade-out");
+    playTerminalSound(392.0, "sine", 0.1);
     void activeInfo.offsetWidth;
     setTimeout(() => {
       activeInfo.innerHTML =
@@ -212,6 +287,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   lounge.addEventListener("click", () => {
     activeInfo.classList.add("fade-out");
+    playTerminalSound(440.0, "sine", 0.1);
     void activeInfo.offsetWidth;
     setTimeout(() => {
       activeInfo.innerHTML =
@@ -226,6 +302,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   comm.addEventListener("click", () => {
     activeInfo.classList.add("fade-out");
+    playTerminalSound(523.25, "sine", 0.1);
     void activeInfo.offsetWidth;
     setTimeout(() => {
       activeInfo.innerHTML =

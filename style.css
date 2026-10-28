@@ -171,7 +171,9 @@ header img:active {
   display: flex;
   flex-direction: column;
 }
-
+.what:hover{
+  cursor: pointer;
+}
 .what-grid {
   padding: 10px;
   display: grid;
@@ -215,6 +217,12 @@ header img:active {
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+@keyframes minis-up-down {
+  0% {transform: translateY(4px);}
+  50% {transform: translateY(-8px);}
+  100% {transform: translateY(4px);}
+}
+
 .what-minis {
   display: flex;
   flex-direction: column;
@@ -225,32 +233,50 @@ header img:active {
   margin: 0.5rem;
   gap: 5px;
   border-radius: 30px;
-  box-shadow: var(--shadow);
   transition: transform 0.5s ease;
+}
+.what-minis.animation {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  gap: 5px;
+  border-radius: 30px;
+  transition: transform 0.5s ease;
+  animation: minis-up-down 6s ease infinite;
 }
 .what-minis:hover {
   cursor: pointer;
 }
 #what-top1 {
   grid-area: top1;
+  
 }
 #what-top2 {
   grid-area: top2;
+  
 }
 #what-middle1 {
   grid-area: middle1;
+  
 }
 #what-middle2 {
   grid-area: middle2;
+  
 }
 #what-bottom {
   grid-area: bottom;
+  
 }
 .transition {
   height: 60px;
   background: linear-gradient(to bottom, var(--background), var(--getstart-bg));
   width: 100%;
 }
+
 .about {
   padding: 2rem;
   background-color: var(--getstart-bg);
@@ -361,6 +387,13 @@ header img:active {
   flex-direction: column-reverse;
   align-items: center;
   justify-content: center;
+}
+.game-tut{
+  display: flex;
+  align-items: center;
+}
+.tutorial{
+  width: 15%;
 }
 .active-info {
   margin: 0.625rem 0rem 0rem 1rem;
