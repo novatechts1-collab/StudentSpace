@@ -61,15 +61,15 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       event.target.dataset.clicks = currentClicks;
       let Combination = [
-        alpha.dataset.clicks,
-        beta.dataset.clicks,
-        gamma.dataset.clicks,
-        delta.dataset.clicks,
-        epsilon.dataset.clicks,
-        zeta.dataset.clicks,
-        eta.dataset.clicks,
-        theta.dataset.clicks,
-        iota.dataset.clicks,
+        Number(alpha.dataset.clicks),
+        Number(beta.dataset.clicks),
+        Number(gamma.dataset.clicks),
+        Number(delta.dataset.clicks),
+        Number(epsilon.dataset.clicks),
+        Number(zeta.dataset.clicks),
+        Number(eta.dataset.clicks),
+        Number(theta.dataset.clicks),
+        Number(iota.dataset.clicks),
       ];
       const winningCombo = [1, 2, 3, 2, 3, 1, 3, 1, 2];
       const winningCombo2 = [5, 4, 3, 4, 3, 5, 3, 4, 5];
@@ -80,28 +80,29 @@ document.addEventListener("DOMContentLoaded", () => {
       } else if (marker === 0.5) {
         event.target.classList.toggle("selected-trois");
       }
-      if (currentClicks === 0){
-
+      if (currentClicks === 0) {
       }
-      if (Combination.join() === winningCombo.join() || Combination.join() === winningCombo2.join()) {
+      if (
+        Combination.join() === winningCombo.join() ||
+        Combination.join() === winningCombo2.join()
+      ) {
         console.log("You win, Victory Animation started");
         setTimeout(() => {
-          orbs.forEach((el) => el.classList.add("win"))
+          orbs.forEach((el) => el.classList.add("win"));
         }, 500);
-        
-
-        game.addEventListener("animationend", () => {
-          console.log("Animation Ended");
-          orbs.forEach((el) => el.classList.remove("win", "selected", "selected-deux", "selected-trois"));
-          ;
-          Combination.fill(0);
-          orbs.forEach((orb, index) => {
-            orb.dataset.clicks === Combination[index];
-          })
-          console.log(`${Combination}, ${alpha.dataset.clicks}`)
+        Combination.fill(0);
+        orbs.forEach((orb, index) => {
+          orb.dataset.clicks = Combination[index];
         });
       }
     }
+  });
+  game.addEventListener("animationend", () => {
+    console.log("Animation Ended");
+    orbs.forEach((el) =>
+      el.classList.remove("win", "selected", "selected-deux", "selected-trois"),
+    );
+    console.log(`${Combination}, ${alpha.dataset.clicks}`);
   });
   calc.addEventListener("click", () => {
     activeInfo.classList.add("fade-out");
