@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const lounge = document.querySelector("#lounge");
   const comm = document.querySelector("#commu");
   const game = document.querySelector(".game-grid");
+  const orbs = document.querySelectorAll(".orbs");
   const activeInfo = document.querySelector(".active-info");
   darkbutton.addEventListener("click", () => {
     clickCount++;
@@ -59,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
         currentClicks = 0;
       }
       event.target.dataset.clicks = currentClicks;
-      const Combination = [
+      let Combination = [
         alpha.dataset.clicks,
         beta.dataset.clicks,
         gamma.dataset.clicks,
@@ -71,6 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
         iota.dataset.clicks,
       ];
       const winningCombo = [1, 2, 3, 2, 3, 1, 3, 1, 2];
+      const winningCombo2 = [5, 4, 3, 4, 3, 5, 3, 4, 5];
       if (marker === 2.5) {
         event.target.classList.toggle("selected");
       } else if (marker === 1.5) {
@@ -78,11 +80,26 @@ document.addEventListener("DOMContentLoaded", () => {
       } else if (marker === 0.5) {
         event.target.classList.toggle("selected-trois");
       }
-      if (Combination.join() === winningCombo.join()) {
-        console.log("You win");
-        document
-          .querySelectorAll(".orbs")
-          .forEach((el) => el.classList.add("win"));
+      if (currentClicks === 0){
+
+      }
+      if (Combination.join() === winningCombo.join() || Combination.join() === winningCombo2.join()) {
+        console.log("You win, Victory Animation started");
+        setTimeout(() => {
+          orbs.forEach((el) => el.classList.add("win"))
+        }, 500);
+        
+
+        game.addEventListener("animationend", () => {
+          console.log("Animation Ended");
+          orbs.forEach((el) => el.classList.remove("win", "selected", "selected-deux", "selected-trois"));
+          ;
+          Combination.fill(0);
+          orbs.forEach((orb, index) => {
+            orb.dataset.clicks === Combination[index];
+          })
+          console.log(`${Combination}, ${alpha.dataset.clicks}`)
+        });
       }
     }
   });
