@@ -116,6 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
     clickCount++;
 
     if (clickCount === 1) {
+      console.log(clickCount)
       playTerminalSound(440, "sine", 0.1);
       secret.classList.add("fade");
       omega.classList.add("clicked");
@@ -126,6 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
         secret.classList.remove("fade");
       }, 200);
     } else if (clickCount === 2) {
+      console.log(clickCount)
       playTerminalSound(554, "sine", 0.1);
       secretText.classList.add("fade");
       omega.classList.add("clickedmore");
@@ -135,6 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
         secretText.classList.remove("fade");
       }, 200);
     } else if (clickCount === 3) {
+      console.log(clickCount)
       playTerminalSound(523, "triangle", 0.15);
       setTimeout(() => playTerminalSound(659, "triangle", 0.15), 100);
       setTimeout(() => playTerminalSound(784, "triangle", 0.3), 200);
@@ -146,6 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
         secretText.classList.remove("found");
         board.classList.add("found");
       }, 300);
+      clickCount = 0;
     }
   });
   game.addEventListener("click", (event) => {
@@ -190,12 +194,12 @@ document.addEventListener("DOMContentLoaded", () => {
         "red",
         "yellow",
         "green",
+        "red",
         "yellow",
         "green",
         "red",
-        "green",
-        "red",
         "yellow",
+        "green",
       ];
       if (marker === 2.5) {
         event.target.classList.toggle("selected");

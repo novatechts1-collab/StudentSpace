@@ -34,8 +34,8 @@
   --selected-border: #3b82f6;
   --carousel-bg: #15203b;
   --game-cell-default: #1e293b;
-  --game-cell-active: #3b82f6;    
-  --game-cell-alt: #64748b;       
+  --game-cell-active: #3b82f6;
+  --game-cell-alt: #64748b;
   --game-cell-win: #f59e0b;
 }
 
@@ -68,11 +68,10 @@
   --selected-bg: #dbeafe;
   --selected-border: #2563eb;
   --carousel-bg: #f1f5f9;
-  
 
   --game-cell-default: #cbd5e1;
   --game-cell-active: #2563eb;
-  --game-cell-alt: #475569;       
+  --game-cell-alt: #475569;
   --game-cell-win: #d97706;
 }
 
@@ -181,7 +180,7 @@ header img:active {
   display: flex;
   flex-direction: column;
 }
-.what:hover{
+.what:hover {
   cursor: pointer;
 }
 .what-grid {
@@ -228,9 +227,15 @@ header img:active {
 }
 
 @keyframes minis-up-down {
-  0% {transform: translateY(4px);}
-  50% {transform: translateY(-8px);}
-  100% {transform: translateY(4px);}
+  0% {
+    transform: translateY(4px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(4px);
+  }
 }
 
 .what-minis {
@@ -263,23 +268,18 @@ header img:active {
 }
 #what-top1 {
   grid-area: top1;
-  
 }
 #what-top2 {
   grid-area: top2;
-  
 }
 #what-middle1 {
   grid-area: middle1;
-  
 }
 #what-middle2 {
   grid-area: middle2;
-  
 }
 #what-bottom {
   grid-area: bottom;
-  
 }
 .transition {
   height: 60px;
@@ -398,12 +398,13 @@ header img:active {
   align-items: center;
   justify-content: center;
 }
-.game-tut{
+.game-tut {
   display: flex;
   align-items: center;
 }
-.tutorial{
+.tutorial {
   width: 15%;
+  color: var(--foreground);
 }
 .active-info {
   margin: 0.625rem 0rem 0rem 1rem;
@@ -508,26 +509,41 @@ header img:active {
 }
 
 .orbs {
-  display: flex;
-  width: 2rem;
   box-sizing: content-box;
   padding: 1rem;
   border: 1px solid var(--svg-border);
-  color: var(--svg-icon-color);
-  border-radius: 100px;
   background-color: transparent;
-  justify-content: center;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 100px;
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  cursor: pointer;
+  overflow: visible;
+  transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+.orbs circle {
+  stroke: var(--foreground);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transform-origin: 12px 12px;
+  transition: all 0.5s ease;
+}
+
 .orbs.selected {
   background-color: var(--game-cell-default);
 }
+
 .orbs.selected-deux {
-background-color: var(--game-cell-alt);
+  background-color: var(--game-cell-alt);
 }
+
 .orbs.selected-trois {
   background-color: var(--game-cell-active);
 }
+
 .orbs:hover {
   cursor: pointer;
 }
@@ -557,7 +573,7 @@ background-color: var(--game-cell-alt);
   }
 }
 .orbs.win {
-  animation: orbwin 10s ease-in-out;
+  animation: orbwin 10s ease;
 }
 
 .secret {
@@ -599,7 +615,8 @@ background-color: var(--game-cell-alt);
 .omega.fade,
 .secret.fade {
   opacity: 0;
-  transform: scale(0.95);}
+  transform: scale(0.95);
+}
 
 .omega {
   display: none;
@@ -618,7 +635,8 @@ background-color: var(--game-cell-alt);
   transform: scale(1);
   transition:
     opacity 200ms ease,
-    transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1);will-change: opacity, transform;
+    transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: opacity, transform;
 }
 
 .omega:hover {
@@ -627,14 +645,13 @@ background-color: var(--game-cell-alt);
 }
 
 .omega.clicked {
-  background-color: var(--selected-bg) !important;
-  border-color: var(--selected-border) !important;
+  background-color: var(--header-hover-bg) !important;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .omega.clickedmore {
-  border-color: var(--selected-bg) !important;
-  background-color: var(--selected-border) !important;
+  border-color: var(--selected-border) !important;
+  
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
