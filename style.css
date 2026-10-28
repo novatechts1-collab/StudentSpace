@@ -431,6 +431,9 @@ header img:active {
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .game {
+  display: none;
+}
+.game.found{
   width: 40%;
   padding: 1rem;
   display: flex;
