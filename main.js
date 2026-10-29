@@ -2,8 +2,10 @@ let ambientContext = null;
 let ambientOsc = null;
 let ambientGain = null;
 let isAmbientPlaying = false;
+let globalAudioCtx = null;
 
 const darkbutton = document.querySelector("#logo-header");
+let themeClickCount = 0;
 let clickCount = 0;
 const carousel = document.querySelector(".carousel");
 const calc = document.querySelector("#calc");
@@ -17,14 +19,17 @@ const game = document.querySelector(".game-grid");
 const orbs = document.querySelectorAll(".orbs");
 const secret = document.querySelector(".secret");
 const secretText = document.querySelector(".secret-text");
+const tutorial = document.querySelector(".tutorial");
 const omega = document.querySelector(".omega");
 const activeInfo = document.querySelector(".active-info");
+const gameHead = document.querySelector("#gameHead");
 const themeMap = {
   "green-dark": "Green with dark accents",
   "green-light": "Green with light accents",
   "blue-light": "Blue with light accents",
   "blue-dark": "Blue with dark accents",
 };
+
 function toggleAmbientHum() {
   if (!isAmbientPlaying) {
     ambientContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -68,70 +73,85 @@ function toggleAmbientHum() {
 }
 
 darkbutton.addEventListener("click", () => {
-  clickCount++;
-  if (clickCount > 3) {
-    clickCount = 0;
+  themeClickCount++;
+  if (themeClickCount > 3) {
+    themeClickCount = 0;
   }
-  if (clickCount === 0) {
+  if (themeClickCount === 0) {
     document.documentElement.setAttribute("data-theme", "green-dark");
-    darkbutton.src = "assets/images/logo/vector/default-monochrome-white.svg";
-  } else if (clickCount === 1) {
+    darkbutton.src = "assets/images/logo-4/vector/default-monochrome-white.svg";
+  } else if (themeClickCount === 1) {
     document.documentElement.setAttribute("data-theme", "green-light");
     darkbutton.src = "assets/images/logo-4/vector/default-monochrome.svg";
-  } else if (clickCount === 2) {
+  } else if (themeClickCount === 2) {
     document.documentElement.setAttribute("data-theme", "blue-dark");
     darkbutton.src = "assets/images/logo/vector/default-monochrome-white.svg";
-  } else if (clickCount === 3) {
+  } else if (themeClickCount === 3) {
     document.documentElement.setAttribute("data-theme", "blue-light");
     darkbutton.src = "assets/images/logo-3/vector/default-monochrome.svg";
   }
   let currentTheme = document.documentElement.dataset.theme;
-  let themeText = themeMap[currentTheme]
-  console.log(themeText)
+  let themeText = themeMap[currentTheme];
+  console.log(themeText);
   localStorage.setItem("theme", currentTheme);
 });
 window.addEventListener("load", () => {
   if (savedTheme === "green-dark") {
-    clickCount = 0;
+    themeClickCount = 0;
     darkbutton.src = "assets/images/logo/vector/default-monochrome-white.svg";
   } else if (savedTheme === "green-light") {
-    clickCount = 1;
+    themeClickCount = 1;
     darkbutton.src = "assets/images/logo/vector/default-monochrome-black.svg";
   } else if (savedTheme === "blue-dark") {
-    clickCount = 2;
+    themeClickCount = 2;
     darkbutton.src = "assets/images/logo/vector/default-monochrome-white.svg";
   } else if (savedTheme === "blue-light") {
-    clickCount = 3;
+    themeClickCount = 3;
     darkbutton.src = "assets/images/logo/vector/default-monochrome-black.svg";
   }
+  console.log(themeClickCount)
 });
+
+function getAudioContext() {
+  if (!globalAudioCtx) {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    globalAudioCtx = new AudioContextClass();
+  }
+
+  if (globalAudioCtx.state === "suspended") {
+    globalAudioCtx.resume();
+  }
+  return globalAudioCtx;
+}
 
 function playTerminalSound(frequency, type, duration) {
   try {
-    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    const osc = audioCtx.createOscillator();
+    const audioCtx = getAudioContext();
+    const osc = audioCtx.chno || audioCtx.createOscillator();
     const gain = audioCtx.createGain();
 
-    osc.type = type;
-    osc.frequency.setValueAtTime(frequency, audioCtx.currentTime);
+    const oscillator = audioCtx.createOscillator();
+    oscillator.type = type;
+    oscillator.frequency.setValueAtTime(frequency, audioCtx.currentTime);
+
     gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
     gain.gain.exponentialRampToValueAtTime(
       0.0001,
       audioCtx.currentTime + duration,
     );
 
-    osc.connect(gain);
+    oscillator.connect(gain);
     gain.connect(audioCtx.destination);
 
-    osc.start();
-    osc.stop(audioCtx.currentTime + duration);
+    oscillator.start();
+    oscillator.stop(audioCtx.currentTime + duration);
   } catch (e) {}
 }
+
 document.addEventListener("DOMContentLoaded", () => {
   if ("scrollRestoration" in history) {
     history.scrollRestoration = "auto";
   }
-  
 
   carousel.addEventListener("click", (event) => {
     if (event.target.matches(".carousel-mini")) {
@@ -239,6 +259,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       if (mappedOut.join() === winningCombo.join()) {
         console.log("You win, Victory Animation started");
+        board.classList.add("win");
         console.log(
           `Picked Combination is [${Combination}] , MappedOut Combination is [${mappedOut}]`,
         );
@@ -252,12 +273,35 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   });
-  game.addEventListener("animationend", () => {
+  board.addEventListener("animationend", (e) => {
+    if (e.target !== board) return;
+    tutorial.classList.add("fade");
+    gameHead.classList.add("fade");
+    setTimeout(() => {
+      gameHead.innerHTML = "You Win!";
+      tutorial.innerHTML =
+        "Absolute precision! Your logic gates fired correctly, and output: VICTORY";
+      tutorial.classList.remove("fade");
+      gameHead.classList.remove("fade");
+    }, 300);
+  });
+  game.addEventListener("animationend", (e) => {
+    e.stopPropagation();
     console.log("Animation Ended");
     orbs.forEach((el) =>
       el.classList.remove("win", "selected", "selected-deux", "selected-trois"),
     );
+    tutorial.classList.add("fade");
+    gameHead.classList.add("fade");
+    setTimeout(() => {
+      tutorial.innerHTML =
+        "To win this minigame, you have to fill all columns with the same color";
+      gameHead.innerHTML = "Wanna play a game?";
+      tutorial.classList.remove("fade");
+      gameHead.classList.remove("fade");
+    }, 300);
   });
+
   calc.addEventListener("click", () => {
     activeInfo.classList.add("fade-out");
     playTerminalSound(261.63, "sine", 0.1);

@@ -291,8 +291,13 @@ header img:active {
   border-bottom: var(--border-line);
   font-size: 2rem;
   cursor: pointer;
-  transition: transform 0.7s ease;
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 400ms ease,
+    transform 350ms ease;
 }
+
 .what-minis:hover {
   transform: translateY(-4px) scale(1.02);
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -479,6 +484,11 @@ header img:active {
 .tutorial {
   width: 15%;
   color: var(--foreground);
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 400ms ease,
+    transform 350ms ease;
 }
 .active-info {
   margin: 0.625rem 0rem 0rem 1rem;
@@ -574,6 +584,34 @@ header img:active {
     transform 300ms ease;
   will-change: opacity, transform;
   width: 100%;
+}
+@keyframes game-win {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20%,
+  60% {
+    transform: translateX(-6px);
+  }
+  40%,
+  80% {
+    transform: translateX(6px);
+  }
+}
+
+.game.win {
+  padding: 0.5rem 1rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  opacity: 1;
+  transform: scale(1);
+  transition:
+    opacity 300ms ease,
+    transform 200ms ease;
+  will-change: opacity, transform;
+  width: 100%;
+  animation: game-win 0.3s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
 }
 .game-grid {
   display: grid;
@@ -690,7 +728,9 @@ header img:active {
 
 .secret-text.fade,
 .omega.fade,
-.secret.fade {
+.secret.fade,
+.tutorial.fade,
+.card-header.fade {
   opacity: 0;
   transform: scale(0.95);
 }
@@ -728,7 +768,7 @@ header img:active {
 
 .omega.clickedmore {
   border-color: var(--selected-border) !important;
-  
+
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
