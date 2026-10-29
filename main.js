@@ -77,13 +77,13 @@ darkbutton.addEventListener("click", () => {
     darkbutton.src = "assets/images/logo/vector/default-monochrome-white.svg";
   } else if (clickCount === 1) {
     document.documentElement.setAttribute("data-theme", "green-light");
-    darkbutton.src = "assets/images/logo/vector/default-monochrome-black.svg";
+    darkbutton.src = "assets/images/logo-4/vector/default-monochrome.svg";
   } else if (clickCount === 2) {
     document.documentElement.setAttribute("data-theme", "blue-dark");
     darkbutton.src = "assets/images/logo/vector/default-monochrome-white.svg";
   } else if (clickCount === 3) {
     document.documentElement.setAttribute("data-theme", "blue-light");
-    darkbutton.src = "assets/images/logo/vector/default-monochrome-black.svg";
+    darkbutton.src = "assets/images/logo-3/vector/default-monochrome.svg";
   }
   let currentTheme = document.documentElement.dataset.theme;
   let themeText = themeMap[currentTheme]
