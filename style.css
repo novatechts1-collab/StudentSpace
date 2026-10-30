@@ -34,6 +34,11 @@
   --selected-bg: rgba(145, 211, 169, 0.16);
   --selected-border: #91d3a9;
   --carousel-bg: #1c2b22;
+  --intro-glow: rgba(145, 211, 169, 0.2);
+  --intro-ring: rgba(164, 223, 183, 0.3);
+  --icon-light: #d5f0e2;
+  --icon-deep: #1e3a1b;
+  --icon-accent: #71c13b;
   --game-cell-default: #a95f53;
   --game-cell-active: #4a9a69;
   --game-cell-alt: #c99a45;
@@ -69,6 +74,11 @@
   --selected-bg: #e0eee2;
   --selected-border: #286b4c;
   --carousel-bg: #edf2eb;
+  --intro-glow: rgba(40, 107, 76, 0.15);
+  --intro-ring: rgba(40, 107, 76, 0.25);
+  --icon-light: #d5f0e2;
+  --icon-deep: #1e3a1b;
+  --icon-accent: #71c13b;
   --game-cell-default: #bf6657;
   --game-cell-active: #398454;
   --game-cell-alt: #bd821f;
@@ -103,6 +113,11 @@
   --selected-bg: rgba(145, 189, 232, 0.16);
   --selected-border: #91bde8;
   --carousel-bg: #1c293b;
+  --intro-glow: rgba(145, 189, 232, 0.22);
+  --intro-ring: rgba(164, 205, 242, 0.34);
+  --icon-light: #d9eaff;
+  --icon-deep: #193959;
+  --icon-accent: #5da9ed;
   --game-cell-default: #a95f53;
   --game-cell-active: #4a86c2;
   --game-cell-alt: #c99a45;
@@ -137,6 +152,11 @@
   --selected-bg: #dceaf6;
   --selected-border: #28649a;
   --carousel-bg: #edf3f8;
+  --intro-glow: rgba(40, 100, 154, 0.15);
+  --intro-ring: rgba(40, 100, 154, 0.25);
+  --icon-light: #d9eaff;
+  --icon-deep: #193959;
+  --icon-accent: #397fbd;
   --game-cell-default: #bf6657;
   --game-cell-active: #3978b4;
   --game-cell-alt: #bd821f;
@@ -152,60 +172,145 @@
 @keyframes load {
   0% {
     opacity: 0;
-    transform: translateY(4px);
+    transform: translateY(14px) scale(0.99);
   }
   100% {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
-@keyframes up-down {
+@keyframes intro-float {
   0% {
-    transform: translateY(3px);
+    transform: translateY(5px) scale(0.98);
   }
-  50% {
-    transform: translateY(-6px);
+  45%,
+  55% {
+    transform: translateY(-7px) scale(1);
   }
   100% {
-    transform: translateY(3px);
+    transform: translateY(5px) scale(0.98);
+  }
+}
+@keyframes intro-exit {
+  to {
+    opacity: 0;
+    transform: translateY(-12px) scale(0.9);
+    filter: blur(8px);
+  }
+}
+@keyframes intro-glow {
+  0%,
+  100% {
+    transform: scale(0.92);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+@keyframes minis-up-down {
+  0%,
+  100% {
+    translate: 0 2px;
+  }
+  50% {
+    translate: 0 -3px;
   }
 }
 .all {
-  display: none;
-  opacity: 0;
-}
-.all.on{
+  visibility: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  animation: load 1s ease-in-out forwards;
-  
+  opacity: 0;
+}
+.all.on {
+  visibility: visible;
+  animation: load 650ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
 }
 .all.fade {
   opacity: 0;
   transform: scale(0.95);
 }
-.bigIcon-wrapper.on {
-  display: flex;
+.bigIcon-wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: none;
   align-items: center;
   justify-content: center;
-  height: 100dvh;
-  width: 100dvw;
-  background: var(--border);
-  opacity: 1;
-  transform: scale(1);
-}
-.bigIcon-wrapper{
-  display: none;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse at center, var(--intro-glow), transparent 58%),
+    var(--background);
   opacity: 0;
-  transition: opacity 300ms ease;
+  transition: opacity 400ms ease;
+}
+.bigIcon-wrapper::before,
+.bigIcon-wrapper::after {
+  position: absolute;
+  z-index: 0;
+  content: "";
+  pointer-events: none;
+}
+.bigIcon-wrapper::before {
+  width: min(74vw, 26rem);
+  aspect-ratio: 1;
+  border: 1px solid var(--intro-ring);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 1.5rem var(--intro-ring),
+    0 0 5rem var(--intro-glow);
+}
+.bigIcon-wrapper::after {
+  width: min(46vw, 16rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--intro-glow);
+  filter: blur(3rem);
+}
+.bigIcon-wrapper.on {
+  display: flex;
+  opacity: 1;
+}
+.bigIcon-wrapper.on::before {
+  animation: intro-glow 4.5s ease-in-out infinite;
+}
+.bigIcon-wrapper.fade {
+  opacity: 0;
+  pointer-events: none;
 }
 .bigIcon {
-  height: 15rem;
-  width: 15rem;
-  animation: up-down 4s ease-in-out infinite;
-  transition: all 300ms ease;
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: min(62vw, 17rem);
+  height: auto;
+  filter: drop-shadow(0 1rem 2rem var(--intro-glow));
+}
+.bigIcon #path2,
+.bigIcon #path7 {
+  fill: var(--icon-light);
+  transition: fill 350ms ease;
+}
+.bigIcon #path5 {
+  fill: var(--icon-deep);
+  transition: fill 350ms ease;
+}
+.bigIcon #path6 {
+  fill: var(--icon-accent);
+  transition: fill 350ms ease;
+}
+.bigIcon-wrapper.on .bigIcon {
+  animation: intro-float 3.8s ease-in-out infinite;
+}
+.bigIcon-wrapper.on.fade .bigIcon {
+  animation: intro-exit 400ms cubic-bezier(0.4, 0, 1, 1) both;
 }
 
 body {
@@ -213,10 +318,7 @@ body {
   color: var(--foreground);
   transition:
     background-color 0.3s ease,
-    color 0.3s ease,
-    opacity 300 ease,
-    transfrom 300 ease;
-  
+    color 0.3s ease;
 }
 
 a {
@@ -378,17 +480,10 @@ header img:active {
   transition: transform 0.5s ease;
 }
 .what-minis.animation {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5rem;
-  margin: 0.5rem;
-  gap: 5px;
-  border-radius: 30px;
-  transition: transform 0.5s ease;
-  animation: minis-up-down 6s ease infinite;
+  animation: minis-up-down 5s ease-in-out infinite;
+}
+.what-minis.animation:hover {
+  animation-play-state: paused;
 }
 .what-minis:hover {
   cursor: pointer;
@@ -638,15 +733,16 @@ header img:active {
 @keyframes game-win {
   0%,
   100% {
-    transform: translateX(0);
+    transform: translateX(0) scale(1);
   }
-  20%,
-  60% {
-    transform: translateX(-6px);
+  28% {
+    transform: translateX(-5px) scale(1.01);
   }
-  40%,
-  80% {
-    transform: translateX(6px);
+  58% {
+    transform: translateX(4px) scale(1.005);
+  }
+  82% {
+    transform: translateX(-2px) scale(1);
   }
 }
 
@@ -661,7 +757,7 @@ header img:active {
     transform 200ms ease;
   will-change: opacity, transform;
   width: 100%;
-  animation: game-win 0.3s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  animation: game-win 550ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 .game-grid {
   display: grid;
@@ -684,7 +780,11 @@ header img:active {
   display: inline-block;
   cursor: pointer;
   overflow: visible;
-  transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+  transition:
+    background-color 300ms ease,
+    border-color 300ms ease,
+    box-shadow 300ms ease,
+    transform 180ms ease;
 }
 
 .orbs circle {
@@ -711,34 +811,33 @@ header img:active {
 
 .orbs:hover {
   cursor: pointer;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px var(--header-hover-bg);
+  transform: translateY(-2px);
 }
 .orbs:active {
-  transform: translateY(-4px);
+  transform: translateY(0) scale(0.94);
 }
 @keyframes orbwin {
   0% {
-    background: var(--game-cell-alt);
+    box-shadow: 0 0 0 0 var(--intro-glow);
     transform: scale(1);
   }
-  25% {
-    background: var(--game-cell-default);
-    transform: scale(0.9);
+  35% {
+    box-shadow: 0 0 0 0.8rem var(--intro-glow);
+    transform: scale(1.12);
   }
-  50% {
-    bbackground: var(--game-cell-active);
-    transform: scale(0.95);
-  }
-  75% {
-    background: var(--game-cell-default);
-    transform: scale(0.9);
+  65% {
+    box-shadow: 0 0 0 0.2rem var(--intro-glow);
+    transform: scale(0.97);
   }
   100% {
-    background: var(--game-cell-alt);
+    box-shadow: 0 0 0 0 var(--intro-glow);
     transform: scale(1);
   }
 }
 .orbs.win {
-  animation: orbwin 10s ease;
+  animation: orbwin 1.2s cubic-bezier(0.2, 0.75, 0.25, 1) both;
 }
 
 .secret {
@@ -824,4 +923,15 @@ header img:active {
 
 .omega.bye {
   display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
