@@ -30,7 +30,6 @@ const themeMap = {
   "blue-dark": "Blue with dark accents",
 };
 
-
 function toggleAmbientHum() {
   if (!isAmbientPlaying) {
     ambientContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -91,7 +90,7 @@ darkbutton.addEventListener("click", () => {
     document.documentElement.setAttribute("data-theme", "blue-light");
     darkbutton.src = "assets/images/logo-3/vector/default-monochrome.svg";
   }
-  console.log(themeClickCount)
+  console.log(themeClickCount);
   let currentTheme = document.documentElement.dataset.theme;
   let themeText = themeMap[currentTheme];
   console.log(themeText);
@@ -114,24 +113,21 @@ window.addEventListener("load", () => {
   console.log(themeClickCount);
 });
 const hasLoaded = sessionStorage.getItem("hasLoaded");
-const prefersReducedMotion = window.matchMedia(
-  "(prefers-reduced-motion: reduce)",
-).matches;
 sessionStorage.setItem("hasLoaded", "true");
 
-if (!hasLoaded && !prefersReducedMotion) {
+if (!hasLoaded) {
   const bigIconWrapper = document.querySelector(".bigIcon-wrapper");
   bigIconWrapper.classList.add("on");
   setTimeout(() => {
     bigIconWrapper.classList.add("fade");
-  }, 2700);
+  }, 3700);
 
   setTimeout(() => {
     bigIconWrapper.classList.remove("on", "fade");
     requestAnimationFrame(() => {
       document.querySelector(".all").classList.add("on");
     });
-  }, 3100);
+  }, 4000);
 } else {
   requestAnimationFrame(() => {
     document.querySelector(".all").classList.add("on");
