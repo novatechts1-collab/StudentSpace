@@ -23,10 +23,10 @@ If you want to spin up a local copy on your machine:
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/nova-tech-ts1/studentspace.git](https://github.com/nova-tech-ts1/studentspace.git)
+   git clone [https://github.com/novatechts1-collab/StudentSpace.git](https://github.com/novatechts1-collab/StudentSpace.git)
 2. **Navigate to the parent directory**
    ```bash
-   cd studentspace
+   cd StudentSpace
 3. **Run the project**
   Open the index.html file in a browser or a local/live hosting service eg. Live Preview on VS Code
 
