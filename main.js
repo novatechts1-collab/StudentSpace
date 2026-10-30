@@ -133,6 +133,7 @@ if (!hasLoaded) {
     document.querySelector(".all").classList.add("on");
   });
 }
+
 function getAudioContext() {
   if (!globalAudioCtx) {
     const AudioContextClass = window.AudioContext || window.webkitAudioContext;
@@ -176,6 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   carousel.addEventListener("click", (event) => {
     if (event.target.matches(".carousel-mini")) {
+      omega.classList.add("found");
       document
         .querySelectorAll(".carousel-mini")
         .forEach((el) => el.classList.remove("selected"));
@@ -322,7 +324,6 @@ document.addEventListener("DOMContentLoaded", () => {
       gameHead.classList.remove("fade");
     }, 300);
   });
-
   calc.addEventListener("click", () => {
     activeInfo.classList.add("fade-out");
     playTerminalSound(261.63, "sine", 0.1);
@@ -334,7 +335,6 @@ document.addEventListener("DOMContentLoaded", () => {
         " >Calculators Hub</span> <span class= " +
         "'tagline'>Instant tools to evaluate your admission eligibility and academic standing</span><ul><li>UTME & Post-UTME Aggregate Score Checker</li><li>Departmental Cut-off Mark Eligibility Estimator</li><li>Targeted Score Calculator for Competitive Courses</li><li>GPA & CGPA Tracker for All Semesters</li></ul><button class=" +
         "'s-button'>Launch Calculator Tool →</button>";
-      omega.classList.add("found");
       activeInfo.classList.remove("fade-out");
     }, 400);
   });
