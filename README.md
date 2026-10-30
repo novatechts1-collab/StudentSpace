@@ -27,8 +27,8 @@ If you want to spin up a local copy on your machine:
 2. **Navigate to the parent directory**
    ```bash
    cd StudentSpace
-3. **Run the project**
-  Open the index.html file in a browser or a local/live hosting service eg. Live Preview on VS Code
+3. **Run the project**:
+   Open the index.html file in a browser or a local/live hosting service eg. Live Preview on VS Code
 
 ### Putting It All Together
 
