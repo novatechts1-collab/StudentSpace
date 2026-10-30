@@ -29,6 +29,21 @@ const themeMap = {
   "blue-light": "Blue with light accents",
   "blue-dark": "Blue with dark accents",
 };
+if (!sessionStorage.getItem("hasLoaded")) {
+  sessionStorage.setItem("hasLoaded", "true");
+  document.querySelector(".bigIcon-wrapper").classList.add("on");
+  setTimeout(() => {
+    document.querySelector(".bigIcon-wrapper").classList.add("fade");
+  }, 2700);
+
+  setTimeout(() => {
+    document.querySelector(".bigIcon-wrapper").classList.remove("on", "fade");
+    document.querySelector(".all").classList.add("on");
+  }, 3000);
+} 
+if (sessionStorage.getItem("hasLoaded")) {
+  document.querySelector(".all").classList.add("on");
+}
 
 function toggleAmbientHum() {
   if (!isAmbientPlaying) {
@@ -109,7 +124,7 @@ window.addEventListener("load", () => {
     themeClickCount = 3;
     darkbutton.src = "assets/images/logo/vector/default-monochrome-black.svg";
   }
-  console.log(themeClickCount)
+  console.log(themeClickCount);
 });
 
 function getAudioContext() {

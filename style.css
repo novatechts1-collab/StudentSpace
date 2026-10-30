@@ -149,13 +149,74 @@
   padding: 0;
   box-sizing: border-box;
 }
+@keyframes load {
+  0% {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes up-down {
+  0% {
+    transform: translateY(3px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+  100% {
+    transform: translateY(3px);
+  }
+}
+.all {
+  display: none;
+  opacity: 0;
+}
+.all.on{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: load 1s ease-in-out forwards;
+  
+}
+.all.fade {
+  opacity: 0;
+  transform: scale(0.95);
+}
+.bigIcon-wrapper.on {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100dvh;
+  width: 100dvw;
+  background: var(--border);
+  opacity: 1;
+  transform: scale(1);
+}
+.bigIcon-wrapper{
+  display: none;
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+.bigIcon {
+  height: 15rem;
+  width: 15rem;
+  animation: up-down 4s ease-in-out infinite;
+  transition: all 300ms ease;
+}
 
 body {
   background-color: var(--background);
   color: var(--foreground);
   transition:
     background-color 0.3s ease,
-    color 0.3s ease;
+    color 0.3s ease,
+    opacity 300 ease,
+    transfrom 300 ease;
+  
 }
 
 a {
@@ -168,6 +229,7 @@ p {
 header {
   position: sticky;
   top: 0;
+  z-index: 1000;
   background: var(--header-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -301,18 +363,6 @@ header img:active {
 .what-minis:hover {
   transform: translateY(-4px) scale(1.02);
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-@keyframes minis-up-down {
-  0% {
-    transform: translateY(4px);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-  100% {
-    transform: translateY(4px);
-  }
 }
 
 .what-minis {
