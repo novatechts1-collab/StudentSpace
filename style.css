@@ -228,7 +228,7 @@
 
 .bigIcon {
   display: block;
-  width: 17rem;
+  width: 20dvw;
   height: auto;
   animation: up-down 3s ease infinite;
   transition: all 50ms ease;
@@ -260,7 +260,7 @@ header {
   align-items: center;
   justify-content: space-between;
   border-bottom: var(--border-line);
-  width: 100%;
+  width: 100dvw;
   max-height: 10rem;
   transition:
     background-color 0.3s ease,
@@ -312,7 +312,7 @@ header img:active {
   color: var(--primary);
 }
 .hero {
-  padding: 2rem;
+  padding: 2.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
