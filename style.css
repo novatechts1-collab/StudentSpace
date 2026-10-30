@@ -299,7 +299,20 @@ header img:active {
     background-color 0.2s ease,
     transform 0.2s ease;
 }
-
+@keyframes what-mini {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateY(-4px);
+  }
+  50%{
+ opacity: 0.5;
+ transform: scale(0.9) translateY(4px);
+  }
+  100% {
+    transform: scale(1) translateY(-4px);
+    opacity: 1;
+  }
+}
 .top-nav a:hover {
   background-color: var(--header-hover-bg) !important;
   color: var(--primary);
@@ -386,6 +399,7 @@ header img:active {
 .what-minis:hover {
   transform: translateY(-4px) scale(1.02);
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
 }
 
 .what-minis {
@@ -398,17 +412,15 @@ header img:active {
   margin: 0.5rem;
   gap: 5px;
   border-radius: 30px;
-  transition: transform 0.5s ease;
-}
-.what-minis.animation {
-  animation: minis-up-down 5s ease-in-out infinite;
-}
-.what-minis.animation:hover {
-  animation-play-state: paused;
-}
-.what-minis:hover {
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), opacity 300ms ease;
   cursor: pointer;
 }
+.what-minis.animation {
+  animation: what-mini 2s ease forwards;
+}
+
+
+
 #what-top1 {
   grid-area: top1;
 }
@@ -845,4 +857,3 @@ header img:active {
 .omega.bye {
   display: none;
 }
-

@@ -23,6 +23,7 @@ const tutorial = document.querySelector(".tutorial");
 const omega = document.querySelector(".omega");
 const activeInfo = document.querySelector(".active-info");
 const gameHead = document.querySelector("#gameHead");
+const whatGrid = document.querySelector(".what-grid");
 const themeMap = {
   "green-dark": "Green with dark accents",
   "green-light": "Green with light accents",
@@ -174,6 +175,15 @@ document.addEventListener("DOMContentLoaded", () => {
   if ("scrollRestoration" in history) {
     history.scrollRestoration = "auto";
   }
+  whatGrid.addEventListener("click", (event) => {
+    const mini = event.target.closest(".what-minis");
+    if (mini && !mini.classList.contains("animation")) {
+      mini.classList.add("animation");
+      mini.addEventListener("animationend", () => {
+        mini.classList.remove("animation");
+      });
+    }
+  });
 
   carousel.addEventListener("click", (event) => {
     if (event.target.matches(".carousel-mini")) {
